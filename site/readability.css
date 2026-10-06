@@ -176,6 +176,11 @@ td { font-size: 13px; }
 .reference-e { color: var(--pink); border-color: #82586e; background: #32212c; }
 .reference-b { color: #80cfe4; border-color: #3f6f7d; background: #1b2c32; }
 .hero-actions button.button { color: var(--text); cursor: pointer; }
+.release-pill { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px; padding: 6px 12px 6px 6px; border: 1px solid #4b5a37; background: #182013; color: var(--text); font: 12px/1.3 var(--mono); text-decoration: none; }
+.release-pill span { padding: 2px 6px; background: var(--lime); color: #192010; font-weight: 700; }
+.release-pill b { color: var(--lime); font-weight: 400; }
+.release-pill:hover, .release-pill:focus-visible { border-color: var(--lime); }
+.start-links { display: flex; flex-wrap: wrap; gap: 12px; }
 /* Footer links and the cite button share one vertically centered line. */
 .footer-links > a, .footer-links > button { display: inline-flex; align-items: center; min-height: 40px; line-height: 1.2; }
 .hero-credit a { color: inherit; white-space: nowrap; text-decoration: underline; text-decoration-color: #555e42; text-underline-offset: 3px; }

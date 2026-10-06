@@ -8,7 +8,7 @@ export function toast(message) {
 }
 const examples = {
   python: `from sol_metric import SOL, TextEncoder\n\nencoder = TextEncoder('gpt2-large')\nmetric = SOL(device='auto')\n\n# Two nonempty lists of text samples\nscore = metric.from_texts(\n    reference_texts, generated_texts,\n    encoder=encoder\n)\nprint(score)  # Lower means closer.`,
-  install: `# Clone the repository, then install locally\ngit clone https://github.com/GregorKornhardt/SOL.git\ncd SOL\n\n# Metric + transformer text encoder\npip install '.[text]'\n\n# NumPy-only metric for existing embeddings\npip install .`,
+  install: `# With GPU support and text encoders\npip install "sol-metric[torch,text]"\n\n# NumPy only, for existing embeddings\npip install sol-metric`,
 };
 let currentExample = 'python';
 function setCode(key) {

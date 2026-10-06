@@ -3,7 +3,7 @@
 The distribution is `sol-metric`, its import package is `sol_metric`, and the source
 repository is [GregorKornhardt/SOL](https://github.com/GregorKornhardt/SOL).
 The version lives in `src/sol_metric/_version.py`; keep `CITATION.cff` and the changelog
-consistent with it. The prepared 0.1.1 version has not been published here.
+consistent with it. Version 0.1.1 was published to PyPI on 2026-10-06.
 
 ## Prepare artifacts
 
@@ -131,10 +131,16 @@ release when GitHub publication is authorized.
 (Actions → Publish to PyPI → Run workflow) uploads to TestPyPI; publishing a GitHub
 release whose tag is `v` plus the package version (e.g. `v0.1.1`) uploads to PyPI.
 Both runs build and `twine check` the artifacts first, as in the manual steps above.
+The TestPyPI upload skips files that already exist, so the workflow can be rehearsed
+again for a version that is already there.
 
-It needs a trusted publisher on each index. Before the first upload, add a pending
-publisher under Account settings → Publishing on [PyPI](https://pypi.org/manage/account/publishing/)
-and [TestPyPI](https://test.pypi.org/manage/account/publishing/) (separate accounts):
+The GitHub `pypi` environment requires the maintainer's approval: after publishing a
+release, open the workflow run and approve the waiting deployment (Review deployments)
+before it uploads.
+
+Both indexes have a trusted publisher for this workflow (Account settings → Publishing
+on [PyPI](https://pypi.org/manage/account/publishing/) and
+[TestPyPI](https://test.pypi.org/manage/account/publishing/), separate accounts):
 
 | Field | PyPI | TestPyPI |
 | --- | --- | --- |
@@ -144,9 +150,8 @@ and [TestPyPI](https://test.pypi.org/manage/account/publishing/) (separate accou
 | Workflow name | `publish.yml` | `publish.yml` |
 | Environment name | `pypi` | `testpypi` |
 
-The first successful upload creates the project and turns the pending publisher
-into a normal one. Optionally, give the GitHub `pypi` environment required
-reviewers, so a release waits for approval before it uploads.
+If an upload fails with `invalid-publisher`, compare these fields with the claims
+printed in the log; they must match exactly.
 
 See the official [packaging tutorial](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
 and [PyPI publisher setup](https://docs.pypi.org/trusted-publishers/adding-a-publisher/).

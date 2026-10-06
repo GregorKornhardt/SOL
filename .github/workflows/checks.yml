@@ -30,8 +30,8 @@ jobs:
           - {python: "3.13", numpy: "numpy"}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python }}
       - run: python -m pip install "${{ matrix.numpy }}" ".[dev]"
@@ -50,8 +50,8 @@ jobs:
           - {os: macos-latest, python: "3.12", numpy: "numpy"}
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python }}
       - run: python -m pip install "${{ matrix.numpy }}" build twine
@@ -80,8 +80,8 @@ jobs:
       TRANSFORMERS_OFFLINE: "1"
       OMP_NUM_THREADS: "2"
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python }}
       - run: python -m pip install "${{ matrix.numpy }}" "${{ matrix.transformers }}"
@@ -97,7 +97,7 @@ jobs:
       TRANSFORMERS_OFFLINE: "1"
       OMP_NUM_THREADS: "2"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: python -m pip install --no-deps .
       - run: python -c "import torch, transformers; assert torch.cuda.is_available()"
       - run: python -m unittest discover -s tests/sol_metric -v
@@ -113,7 +113,7 @@ jobs:
         run: |
           python examples/compare_corpora.py lm1b --validate --device cuda:0 --dtype float32 --local-files-only --output results/lm1b_fp32.json
           python examples/compare_corpora.py owt --validate --device cuda:0 --dtype float32 --local-files-only --output results/owt_fp32.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: inputs.full_validation
         with:
           name: frozen-5k-validation

@@ -1,6 +1,6 @@
-# SOL
+# SOL - Sliced Optimal Transport for Language
 
-SOL (sliced optimal transport for language) measures the gap between two text
+SOL measures the gap between two text
 corpora with a double-sliced Wasserstein distance over contextual token
 embeddings. Lower is closer; identical corpora score zero.
 
@@ -75,7 +75,6 @@ print(SOL().from_tokens(x, x_offsets, y, y_offsets))
 
 Good to know:
 
-- Scores are comparable only with the same encoder, settings and corpus sizes.
 - Results are reproducible: the random directions and GP draws are seeded
   (`seed`, `gp_seed`, both 0 by default). Change them to measure the spread
   over seeds, as the paper does with nine seed pairs.

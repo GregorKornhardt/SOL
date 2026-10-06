@@ -125,11 +125,28 @@ and verify its import/version and examples. Record the final version/date in
 the changelog and citation, and associate the matching source revision with the
 release when GitHub publication is authorized.
 
-There is no automatic publishing workflow in this repository. A future workflow
-can use PyPI Trusted Publishing: configure the GitHub owner `GregorKornhardt`,
-repository `SOL`, exact workflow filename and any chosen environment separately
-on PyPI and TestPyPI. Pending publishers support the first upload of a new
-project. Configure that account integration before enabling uploads.
+## Trusted Publishing
+
+`.github/workflows/publish.yml` uploads without stored tokens. Running it by hand
+(Actions → Publish to PyPI → Run workflow) uploads to TestPyPI; publishing a GitHub
+release whose tag is `v` plus the package version (e.g. `v0.1.1`) uploads to PyPI.
+Both runs build and `twine check` the artifacts first, as in the manual steps above.
+
+It needs a trusted publisher on each index. Before the first upload, add a pending
+publisher under Account settings → Publishing on [PyPI](https://pypi.org/manage/account/publishing/)
+and [TestPyPI](https://test.pypi.org/manage/account/publishing/) (separate accounts):
+
+| Field | PyPI | TestPyPI |
+| --- | --- | --- |
+| PyPI project name | `sol-metric` | `sol-metric` |
+| Owner | `GregorKornhardt` | `GregorKornhardt` |
+| Repository name | `SOL` | `SOL` |
+| Workflow name | `publish.yml` | `publish.yml` |
+| Environment name | `pypi` | `testpypi` |
+
+The first successful upload creates the project and turns the pending publisher
+into a normal one. Optionally, give the GitHub `pypi` environment required
+reviewers, so a release waits for approval before it uploads.
 
 See the official [packaging tutorial](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
 and [PyPI publisher setup](https://docs.pypi.org/trusted-publishers/adding-a-publisher/).

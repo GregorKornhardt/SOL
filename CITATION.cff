@@ -3,6 +3,7 @@ message: "If you use this software, please cite the SOL paper below."
 title: "SOL: Sliced Optimal Transport for Language"
 type: software
 version: 0.1.1
+date-released: 2026-10-06
 authors:
   - family-names: Kornhardt
     given-names: Gregor

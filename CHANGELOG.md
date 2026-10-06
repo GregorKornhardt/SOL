@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — 0.1.1
+## 0.1.1 — 2026-10-06
 
 First standalone release of `sol-metric`; the import package is `sol_metric`.
 

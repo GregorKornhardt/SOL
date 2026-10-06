@@ -1,0 +1,29 @@
+% Requires \usepackage{booktabs,wrapfig}.
+% Insert this wraptable at the paragraph discussing this encoder.
+% Generated from validated nine-seed results; mean and population SD, four decimal places.
+% Regenerate: python artifacts/owt_temperature_wraptables_20261002/build.py
+\begin{wraptable}{r}{0.60\textwidth}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{2.5pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular}{@{}crrr@{}}
+    \toprule
+    Temp. & vMF & \shortstack{Soft-Masked\\+ ReMDM} & MDLM \\
+    \midrule
+    $0.7$ & $3.7874 \pm 0.0963$ & $4.9410 \pm 0.1478$ & $4.1873 \pm 0.1076$ \\
+    $0.8$ & $2.3689 \pm 0.0685$ & $3.0323 \pm 0.1023$ & $2.8273 \pm 0.0746$ \\
+    $0.9$ & $1.6790 \pm 0.0423$ & $1.2886 \pm 0.0497$ & $2.2392 \pm 0.0436$ \\
+    $1.0$ & $\mathbf{1.5109 \pm 0.0223}$ & $\mathbf{0.6075 \pm 0.0126}$ & $\mathbf{2.1675 \pm 0.0287}$ \\
+    $1.1$ & $1.9666 \pm 0.0295$ & $1.2774 \pm 0.0222$ & $2.8280 \pm 0.0362$ \\
+    $1.2$ & $2.9077 \pm 0.0488$ & $6.4263 \pm 0.0895$ & $4.0028 \pm 0.0546$ \\
+    $1.3$ & $4.0478 \pm 0.0698$ & $8.5170 \pm 0.1220$ & $5.3756 \pm 0.0793$ \\
+    \bottomrule
+  \end{tabular}
+  \caption{\footnotesize Temperature sweep scored with GPT-2-large ($L_g=L_\xi=1024$, $M=64$).
+  SOL against reference G, with 5,000 samples per side and a 1,024-token horizon.
+  Entries are mean $\pm$ population SD over nine seed pairs; lower is better.
+  Bold marks each column minimum. Soft-Masked uses ReMDM-loop;
+  MDLM uses exact categorical sampling.}
+  \label{tab:owt-temperature-gpt1k}
+\end{wraptable}

@@ -1,0 +1,401 @@
+% Updated on 2026-09-26 with verified G scores for FMLM*/ELF* and uniform CFG notation; provenance: artifacts/owt_table_G_update_20260926/validation.json
+% Updated on 2026-10-06 to the arXiv version (2610.06513): adds ADLM-large (G) and BD3-LM block 4/16 on reference B (provenance: artifacts/adlm_bd3_table_aux_20260926/rows_provenance.json, artifacts/bd3_sol_refB_z3_20260926/README.md), labels the vMF/VP PC-warp rows S=1024, and groups FLM and ELF* with the few-step models.
+\begin{table*}[h]
+    \centering
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \renewcommand{\arraystretch}{0.94}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{@{}llrrrrr@{}}
+      \toprule
+      & & & & \multicolumn{3}{c}{SOL $(\downarrow)$} \\
+      \cmidrule(lr){5-7}
+      Model & Setting & $H@1024$ & Gen. ppl. & GPT-2-large & OLMo-2-1B & Dream-7B \\
+      \midrule
+
+      \emph{Real OWT}\textsuperscript{G}
+      & --- & 5.449 & 14.9
+      & $0.2002 \pm 0.0116$
+      & $0.7800 \pm 0.0552$
+      & $2.066 \pm 0.109$ \\
+
+      \rowcolor{gray!10}
+      \emph{Real ELF OWT}\textsuperscript{E}
+      & --- & 5.402 & 17.0
+      & $0.2457 \pm 0.0239$
+      & $0.8857 \pm 0.0636$
+      & $2.649 \pm 0.219$ \\
+
+      \midrule
+      \addlinespace[2pt]
+      \multicolumn{7}{l}{\textit{Autoregressive model} \cite{sahoo2024simple}} \\
+
+      AR\textsuperscript{G}
+      & Temperature 1.0 & 5.582 & 34.9
+      & $1.064 \pm 0.008$
+      & $7.450 \pm 0.132$
+      & $22.207 \pm 0.099$ \\
+
+      \midrule
+      \multicolumn{7}{l}{\textit{Discrete diffusion}} \\
+      \addlinespace[2pt]
+
+      \multicolumn{7}{l}{\textit{DUO} \cite{sahoo2025the}} \\
+
+      DUO-distilled, $T=32$\textsuperscript{G}
+      & Ancestral & 5.518 & 62.3
+      & $1.670 \pm 0.019$
+      & $11.063 \pm 0.228$
+      & $30.595 \pm 0.082$ \\
+
+      DUO-distilled, $T=32$\textsuperscript{G}
+      & Greedy tail & 5.378 & 46.5
+      & $1.748 \pm 0.024$
+      & $11.729 \pm 0.253$
+      & $31.802 \pm 0.242$ \\
+
+      DUO-base\textsuperscript{G}
+      & Ancestral, $T=1024$ & 5.537 & 76.9
+      & $1.948 \pm 0.024$
+      & $12.730 \pm 0.250$
+      & $32.642 \pm 0.084$ \\
+
+      \addlinespace[2pt]
+      \multicolumn{7}{l}{\textit{MDLM} \cite{sahoo2024simple}} \\
+
+      MDLM, exact sampling\textsuperscript{G}
+      & DDPM-cache, $T=1000$ & 5.445 & 59.4
+      & $2.185 \pm 0.028$
+      & $14.119 \pm 0.246$
+      & $36.394 \pm 0.086$ \\
+
+      MDLM, as released\textsuperscript{G}
+      & FP32 Gumbel, $T=1000$ & 5.292 & 42.8
+      & $2.340 \pm 0.035$
+      & $14.275 \pm 0.238$
+      & $38.444 \pm 0.112$ \\
+
+      \addlinespace[2pt]
+      \multicolumn{7}{l}{\textit{LDDM} \cite{jo2026loopholing}} \\
+
+      LDDM-M\textsuperscript{G}
+      & Loopholing, $T=1024$ & 5.536 & 48.2
+      & $1.082 \pm 0.011$
+      & $8.266 \pm 0.160$
+      & $24.601 \pm 0.038$ \\
+
+      LDDM-U\textsuperscript{G}
+      & Loopholing, $T=1024$ & 5.409 & 28.2
+      & $1.009 \pm 0.034$
+      & $6.851 \pm 0.168$
+      & $24.209 \pm 0.095$ \\
+
+      \addlinespace[2pt]
+      \multicolumn{7}{l}{\textit{Soft-Masked} \cite{hersche2026softmasked}} \\
+
+      Soft-Masked\textsuperscript{G}
+      & MDLM, $T=1024$, $p=0.9$ & 5.364 & 23.6
+      & $0.7415 \pm 0.0090$
+      & $5.390 \pm 0.110$
+      & $21.643 \pm 0.103$ \\
+
+      Soft-Masked\textsuperscript{G}
+      & ReMDM-loop, $T=1024$, $p=0.9$ & 5.341 & 16.7
+      & $\mathbf{0.6101 \pm 0.0135}$
+      & $\mathbf{3.526 \pm 0.066}$
+      & $\mathbf{18.966 \pm 0.126}$ \\
+
+      \addlinespace[2pt]
+  \multicolumn{7}{l}{\textit{ADLM} \cite{rout2025anchored}} \\
+
+  ADLM-large\textsuperscript{G}
+  & ReMDM-loop, $T=1024$, $p=0.9$ & 5.352 & 28.9
+  & $1.183 \pm 0.014$
+  & $7.534 \pm 0.135$
+  & $23.601 \pm 0.088$ \\
+
+  \addlinespace[2pt]
+  \multicolumn{7}{l}{\textit{BD3-LM} \cite{arriola2025block}} \\
+
+  BD3-LM, block 4\textsuperscript{B}
+  & First-hitting, $T=5000$, $p=0.9$ & 5.336 & 24.4
+  & $1.082 \pm 0.023$
+  & $8.407 \pm 0.180$
+  & $26.070 \pm 0.057$ \\
+
+  BD3-LM, block 16\textsuperscript{B}
+  & First-hitting, $T=5000$, $p=0.9$ & 5.344 & 32.9
+  & $1.458 \pm 0.027$
+  & $10.709 \pm 0.218$
+  & $30.315 \pm 0.091$ \\
+
+
+      \midrule
+      \multicolumn{7}{l}{\textit{Continuous diffusion}} \\
+      \addlinespace[2pt]
+
+      \multicolumn{7}{l}{\textit{vMF} \cite{CKS2026}} \\
+
+      vMF, self-cond.\textsuperscript{G}
+      & PC-warp, $S=128$ & 5.222 & 30.2
+      & $1.354 \pm 0.034$
+      & $8.607 \pm 0.197$
+      & $29.225 \pm 0.089$ \\
+
+      vMF, self-cond. (base)\textsuperscript{G}
+      & PC-warp, $S=128$ & 5.315 & 45.1
+      & $1.524 \pm 0.022$
+      & $10.657 \pm 0.221$
+      & $31.379 \pm 0.076$ \\
+
+      vMF, self-cond.\textsuperscript{G}
+      & SDE-warp, $S=128$, $\sigma=0.01$, $q=1$ & 5.348 & 43.6
+      & $1.386 \pm 0.022$
+      & $9.884 \pm 0.196$
+      & $30.375 \pm 0.074$ \\
+
+      vMF, no self-cond.\textsuperscript{G}
+      & PC-warp, $S=128$ & 5.533 & 141.9
+      & $2.928 \pm 0.036$
+      & $18.157 \pm 0.343$
+      & $45.900 \pm 0.130$ \\
+
+      vMF\textsuperscript{G}
+      & ODE-warp, $S=1024$ & 5.456 & 75.4
+      & $1.901 \pm 0.024$
+      & $12.781 \pm 0.268$
+      & $33.832 \pm 0.113$ \\
+
+      vMF\textsuperscript{G}
+      & PC-warp, $S=1024$ & 5.432 & 56.3
+      & $1.546 \pm 0.021$
+      & $10.777 \pm 0.233$
+      & $30.583 \pm 0.099$ \\
+
+      \addlinespace[2pt]
+      \multicolumn{7}{l}{\textit{VP} \cite{CKS2026}} \\
+
+      VP, self-cond.\textsuperscript{G}
+      & SDE-warp, $S=128$, $\sigma=0.1$, $q=1$ & 5.355 & 50.9
+      & $1.606 \pm 0.023$
+      & $10.898 \pm 0.222$
+      & $31.972 \pm 0.072$ \\
+
+      VP\textsuperscript{G}
+      & ODE-warp, $S=1024$ & 5.435 & 66.1
+      & $1.775 \pm 0.022$
+      & $11.997 \pm 0.247$
+      & $33.275 \pm 0.076$ \\
+
+      VP\textsuperscript{G}
+      & PC-warp, $S=1024$ & 5.430 & 59.0
+      & $1.642 \pm 0.022$
+      & $11.168 \pm 0.232$
+      & $31.664 \pm 0.068$ \\
+
+      \addlinespace[2pt]
+      \multicolumn{7}{l}{\textit{LangFlow} \cite{chen2026langflowcontinuousdiffusionrivals}} \\
+
+      LangFlow\textsuperscript{G}
+      & NFE$=128$ & 5.425 & 59.0
+      & $1.604 \pm 0.018$
+      & $11.930 \pm 0.226$
+      & $32.488 \pm 0.066$ \\
+
+      LangFlow\textsuperscript{G}
+      & NFE$=1024$ & 5.257 & 36.9
+      & $1.371 \pm 0.019$
+      & $9.886 \pm 0.193$
+      & $30.541 \pm 0.071$ \\
+
+    \addlinespace[2pt]
+      \rowcolor{gray!10}
+      \multicolumn{7}{l}{\textit{ELF} \cite{hu2026elfembeddedlanguageflows}} \\
+
+      \rowcolor{gray!10}
+      ELF-B\textsuperscript{E}
+      & SDE, 32 steps, CFG$=3$ & 5.156 & 24.0
+      & $2.066 \pm 0.055$
+      & $12.817 \pm 0.314$
+      & $37.584 \pm 0.218$ \\
+
+      \rowcolor{gray!10}
+      ELF-B\textsuperscript{E}
+      & SDE, 32 steps, CFG$=1$ & 5.219 & 29.4
+      & $2.283 \pm 0.057$
+      & $13.633 \pm 0.332$
+      & $39.144 \pm 0.232$ \\
+
+      \rowcolor{gray!10}
+      ELF-B\textsuperscript{E}
+      & ODE, 128 steps, CFG$=1$ & 5.308 & 45.4
+      & $1.874 \pm 0.029$
+      & $13.565 \pm 0.295$
+      & $33.677 \pm 0.116$ \\
+
+      \rowcolor{gray!10}
+      ELF-B\textsuperscript{E}
+      & ODE, 1024 steps, CFG$=1$ & 5.090 & 24.0
+      & $1.778 \pm 0.031$
+      & $12.357 \pm 0.292$
+      & $33.320 \pm 0.188$ \\
+
+      \rowcolor{gray!10}
+      ELF-B\textsuperscript{E}
+      & SDE, 128 steps, CFG$=1$ & 5.123 & 21.9
+      & $1.654 \pm 0.045$
+      & $10.980 \pm 0.257$
+      & $32.878 \pm 0.260$ \\
+
+      \rowcolor{gray!10}
+      ELF-B\textsuperscript{E}
+      & SDE, 64 steps, CFG$=0.5$, $\gamma=0.5$ & 5.385 & 56.3
+      & $2.181 \pm 0.035$
+      & $14.796 \pm 0.318$
+      & $35.648 \pm 0.130$ \\
+
+      \rowcolor{gray!10}
+      ELF-M\textsuperscript{E}
+      & ODE, 64 steps, CFG$=1.25$, $\gamma=0$ & 5.399 & 53.0
+      & $1.695 \pm 0.023$
+      & $12.805 \pm 0.268$
+      & $32.153 \pm 0.099$ \\
+
+      \rowcolor{gray!10}
+      ELF-L\textsuperscript{E}
+      & SDE, 64 steps, CFG$=1$, $\gamma=0.75$ & 5.398 & 35.7
+      & $1.591 \pm 0.045$
+      & $10.039 \pm 0.232$
+      & $32.013 \pm 0.274$ \\
+
+      \rowcolor{gray!10}
+      ELF-B\textsuperscript{E}
+      & SDE, 64 steps, CFG$=1$, $\gamma=1$ & 5.216 & 28.5
+      & $1.788 \pm 0.043$
+      & $11.952 \pm 0.271$
+      & $33.689 \pm 0.228$ \\
+
+      \rowcolor{gray!10}
+      ELF-M\textsuperscript{E}
+      & SDE, 64 steps, CFG$=1$, $\gamma=1$ & 5.309 & 33.4
+      & $1.665 \pm 0.033$
+      & $11.719 \pm 0.261$
+      & $32.671 \pm 0.205$ \\
+
+      \rowcolor{gray!10}
+      ELF-L\textsuperscript{E}
+      & SDE, 64 steps, CFG$=1$, $\gamma=1$ & 5.378 & 32.9
+      & $1.601 \pm 0.048$
+      & $9.829 \pm 0.227$
+      & $31.969 \pm 0.290$ \\
+    \midrule
+      \multicolumn{7}{l}{\textit{Few-Step Models}} \\
+      \addlinespace[2pt]
+      \addlinespace[2pt]
+      \multicolumn{7}{l}{\textit{FLM} \cite{lee2026flowmaplanguagemodels}} \\
+
+      FLM\textsuperscript{G}
+      & Euler, 1024 steps & 5.345 & 63.1
+      & $3.458 \pm 0.068$
+      & $20.126 \pm 0.387$
+      & $48.387 \pm 0.189$ \\
+
+      FMLM\textsuperscript{G}
+      & 1 step & 5.168 & 167.8
+      & $6.857 \pm 0.100$
+      & $30.806 \pm 0.647$
+      & $79.042 \pm 0.658$ \\
+
+      FMLM\textsuperscript{G}
+      & 2 steps & 5.295 & 135.1
+      & $5.683 \pm 0.085$
+      & $27.826 \pm 0.544$
+      & $71.134 \pm 0.494$ \\
+
+      FMLM\textsuperscript{G}
+      & 4 steps & 5.361 & 111.0
+      & $4.743 \pm 0.070$
+      & $25.303 \pm 0.492$
+      & $63.074 \pm 0.409$ \\
+
+      \addlinespace[2pt]
+      \multicolumn{7}{l}{\textit{FMLM*} \cite{yoo2026selfconditionedflowmaplanguage}} \\
+
+     FMLM$^{*}$\textsuperscript{G}
+      & CTM, 1 step, CFG$=1$, $\gamma=1$ & 5.319 & 120.3
+      & $3.690 \pm 0.054$
+      & $18.808 \pm 0.373$
+      & $48.859 \pm 0.169$ \\
+
+      FMLM$^{*}$\textsuperscript{G}
+      & CTM, 1 step, CFG$=5$, $\gamma=1$ & 5.368 & 116.0
+      & $3.431 \pm 0.046$
+      & $18.160 \pm 0.382$
+      & $46.273 \pm 0.099$ \\
+
+      FMLM$^{*}$\textsuperscript{G}
+      & CTM, 2 steps, CFG$=1$, $\gamma=0.75$ & 5.411 & 99.5
+      & $2.932 \pm 0.042$
+      & $16.491 \pm 0.320$
+      & $43.430 \pm 0.195$ \\
+
+      FMLM$^{*}$\textsuperscript{G}
+      & CTM, 2 steps, CFG$=5$, $\gamma=0.75$ & 5.458 & 97.4
+      & $2.737 \pm 0.035$
+      & $15.941 \pm 0.322$
+      & $41.120 \pm 0.139$ \\
+
+      FMLM$^{*}$\textsuperscript{G}
+      & CTM, 5 steps, CFG$=1$, $\gamma=1$ & 5.294 & 66.5
+      & $2.860 \pm 0.054$
+      & $15.556 \pm 0.295$
+      & $43.731 \pm 0.188$ \\
+
+      FMLM$^{*}$\textsuperscript{G}
+      & CTM, 5 steps, CFG$=5$, $\gamma=1$ & 5.415 & 70.8
+      & $2.486 \pm 0.042$
+      & $14.869 \pm 0.291$
+      & $40.177 \pm 0.114$ \\
+
+      \addlinespace[2pt]
+      FMLM$^{*}$\textsuperscript{G}
+      & Flow map, 8 steps, CFG$=5$, $\gamma=0$ & 5.464 & 82.8
+      & $2.370 \pm 0.032$
+      & $14.438 \pm 0.295$
+      & $38.233 \pm 0.158$ \\
+
+      FMLM$^{*}$\textsuperscript{G}
+      & Flow map, 128 steps, CFG$=5$, $\gamma=0$ & 5.456 & 79.0
+      & $2.313 \pm 0.032$
+      & $14.268 \pm 0.285$
+      & $38.482 \pm 0.152$ \\
+
+      \addlinespace[2pt]
+
+      ELF$^{*}$\textsuperscript{G}
+      & CDEQ, 128 steps, CFG$=1$, $\gamma=0$ & 5.414 & 73.8
+      & $2.222 \pm 0.034$
+      & $14.245 \pm 0.267$
+      & $37.827 \pm 0.128$ \\
+
+      ELF$^{*}$\textsuperscript{G}
+      & CDEQ, 128 steps, CFG$=5$, $\gamma=0$ & 5.384 & 60.8
+      & $1.952 \pm 0.029$
+      & $13.105 \pm 0.252$
+      & $35.950 \pm 0.103$ \\
+
+
+
+      \bottomrule
+    \end{tabular}%
+    }
+    \caption{\small
+      OpenWebText baselines using 5,000 samples per distribution and a
+      1,024-token horizon. The standard SOL hyperparameters are used;
+      see Section~\ref{sec:setup}.
+      Superscripts G, E and B identify the evaluation reference family.
+      SOL is reported as mean $\pm$ population std over
+      nine crossed direction/GP seed pairs.
+    }
+    \label{tab:experiment-8d-owt-baselines}
+  \end{table*}

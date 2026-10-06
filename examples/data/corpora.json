@@ -1,0 +1,155 @@
+{
+  "lm1b_reference": {
+    "path": "lm1b_reference.jsonl.gz",
+    "count": 32,
+    "sha256": "14670a094dad6aa78e681b9c40ca041d91ad59be746f32843e9163e2cbf3fbc4",
+    "provenance": {
+      "dataset": "LM1B",
+      "role": "reference",
+      "source_archive": "lm1b_reference__000.jsonl.gz",
+      "source_archive_sha256": "ef436f7453639f20ab5dc7c7ea93a6d9a7be9081ed6bb80e79682c13e09ebe49",
+      "source_rows": [
+        0,
+        32
+      ],
+      "text_unchanged": true,
+      "fields_retained": [
+        "text"
+      ]
+    }
+  },
+  "lm1b_generated": {
+    "path": "lm1b_generated.jsonl.gz",
+    "count": 32,
+    "sha256": "ca702978089a83251ca4fc09a9b086151d9817fac25240e4590b95748a980644",
+    "provenance": {
+      "dataset": "LM1B",
+      "role": "generated",
+      "source_archive": "lm1b_generated__000.jsonl.gz",
+      "source_archive_sha256": "6d8a7078957f8d673c7c9fb87ddb4b3c04c0d1a1d696c9b9b57bf066c262d921",
+      "source_rows": [
+        0,
+        32
+      ],
+      "text_unchanged": true,
+      "fields_retained": [
+        "text"
+      ],
+      "model": "LM1B spherical (vMF) flow model (vmf_pretrain/final.pt, step 1M), predictor-corrector sampling with S=64 predictor steps and one corrector step each",
+      "source_file": "data/pcS64cs1_100k.json",
+      "source_file_sha256": "90572e0c59db1710c44b64cc72c9f13a86a384b559626e7b1a62ba56cb28c57a"
+    }
+  },
+  "owt_reference": {
+    "path": "owt_reference.jsonl.gz",
+    "count": 32,
+    "sha256": "823466b0426dcf052d4fa3407e19da73920b72dbf1db9ed85dbea23bc97ad44c",
+    "provenance": {
+      "dataset": "OpenWebText",
+      "role": "reference",
+      "description": "S-FLM held-out OpenWebText reference G: 1,024-token GPT-2 chunks decoded to text, the paper's OWT reference",
+      "source_file": "data/owt_sflm_valid_1024_texts.json",
+      "source_file_sha256": "2efd46dae4070b151a94b974a1039707c4fc81c5f235a2caa6bd5171146af003",
+      "frozen_paper_shards": [
+        "owt_reference_G__000",
+        "owt_reference_G__001"
+      ],
+      "pool_size": 10000,
+      "selection": "numpy.random.default_rng(100).choice(10000, 5000, replace=False), stored in ascending row order: the paper's GP-seed-0 subset; this preview keeps its first 32 rows",
+      "source_rows": [
+        0,
+        2,
+        3,
+        5,
+        8,
+        10,
+        12,
+        16,
+        17,
+        18,
+        20,
+        22,
+        24,
+        26,
+        27,
+        29,
+        31,
+        32,
+        33,
+        39,
+        41,
+        42,
+        43,
+        44,
+        45,
+        47,
+        49,
+        50,
+        54,
+        57,
+        60,
+        62
+      ],
+      "text_unchanged": true,
+      "fields_retained": [
+        "text"
+      ]
+    }
+  },
+  "owt_generated": {
+    "path": "owt_generated.jsonl.gz",
+    "count": 32,
+    "sha256": "c08fe04e1b0cc6a5cdf1f0bea3f3b8d116c41c078103d80e18c706c2bfd3001b",
+    "provenance": {
+      "dataset": "OpenWebText",
+      "role": "generated",
+      "model": "MDLM released OpenWebText checkpoint, exact multinomial sampling (DDPM-cache, T=1000); paper row 'MDLM, exact sampling'",
+      "source_file": "data/mdlm_exact_owt5k.json",
+      "source_file_sha256": "ba2b7cc26882ad5ab840beb1618e189752d5f5178b4a9faa1ac18be42997e35e",
+      "frozen_paper_shards": [
+        "owt_mdlm_exact__000",
+        "owt_mdlm_exact__001"
+      ],
+      "pool_size": 5024,
+      "selection": "numpy.random.default_rng(200).choice(5024, 5000, replace=False), stored in ascending row order: the paper's GP-seed-0 subset; this preview keeps its first 32 rows",
+      "source_rows": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "text_unchanged": true,
+      "fields_retained": [
+        "text"
+      ]
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "schema": 2,
+  "description": "End-to-end SOL checks on one frozen 5000-reference/5000-generated text pair per dataset: LM1B vMF flow samples and OpenWebText MDLM exact samples.",
+  "method": "raw_gp_empirical_bin_average_v1",
+  "protocol": {
+    "samples_per_corpus": 5000,
+    "max_length": 1024,
+    "slices_per_level": 1024,
+    "encoder": "gpt2-large",
+    "revision": "32b71b12589c2f8d625668d2335a01cac3249519",
+    "encoder_batch_size": 8,
+    "encoder_max_tokens_per_batch": 8192,
+    "input_mode": "retokenized_text",
+    "config": {
+      "n_directions": 1024,
+      "n_projections": 1024,
+      "n_quantiles": 64,
+      "lengthscale": 0.1,
+      "seed": 0,
+      "gp_seed": 0,
+      "scale": null
+    }
+  },
+  "rtol": 0.0001,
+  "atol": 2e-06,
+  "datasets": {
+    "lm1b": {
+      "reference": {
+        "corpus": "lm1b_reference",
+        "sha256": "84c5d0df5a11a7ea909de38aab49e79fe23e744a0a83cdcca83d217444141c7c",
+        "rows": [
+          0,
+          5000
+        ]
+      },
+      "generated": {
+        "corpus": "lm1b_generated",
+        "sha256": "7987a4ed02110ec5f13f405849de842e5b62cebbb13168b6a29a551c2b1b658b",
+        "rows": [
+          0,
+          5000
+        ]
+      },
+      "scores": {
+        "float16": 0.9618720932960572,
+        "float32": 0.961950296904681
+      },
+      "score_sources": {
+        "float16": "paper OWT-table worker (MIND-language artifacts/owt_raw_gp_binavg_20260923/worker.py) on these texts: FP16 states, direction seed 0, GP seed 0",
+        "float32": "sol-metric FP32-encoder measurement (regression baseline; the paper worker encodes in FP16 only)"
+      },
+      "package_measurements": {
+        "float16": 0.9618720933752689,
+        "float32": 0.961950296904681,
+        "float16_relative_difference_from_worker": 8.235164407391226e-11
+      }
+    },
+    "owt": {
+      "reference": {
+        "corpus": "owt_reference",
+        "sha256": "71e2c3e99e5ca4e3a60ec66b1fb05307291305a840b70d628753e9693d766369",
+        "rows": [
+          0,
+          5000
+        ]
+      },
+      "generated": {
+        "corpus": "owt_generated",
+        "sha256": "1d63faa786620d3a839735306cabd04567b0dc1f01b8186e174de80e4ca1b8bd",
+        "rows": [
+          0,
+          5000
+        ]
+      },
+      "scores": {
+        "float16": 2.1674155071924597,
+        "float32": 2.1673446416141333
+      },
+      "score_sources": {
+        "float16": "paper OWT-table worker (MIND-language artifacts/owt_raw_gp_binavg_20260923/worker.py) on these texts: FP16 states, direction seed 0, GP seed 0",
+        "float32": "sol-metric FP32-encoder measurement (regression baseline; the paper worker encodes in FP16 only)"
+      },
+      "package_measurements": {
+        "float16": 2.1674155072885046,
+        "float32": 2.1673446416141333,
+        "float16_relative_difference_from_worker": 4.4313122911777685e-11
+      },
+      "published": {
+        "score": 2.167356301995784,
+        "source": "MIND-language artifacts/owt_raw_gp_binavg_20260923/scores/gpt_mdlm_exact_t0.json, GP seed 0; paper table GPT-2 Large 'MDLM, exact sampling' 2.185 +/- 0.028 over nine seed pairs",
+        "note": "The published run encoded reference G from native GPT-2 token IDs; these files retokenize the decoded text.",
+        "relative_difference_of_text_input": 2.731678064236227e-05
+      }
+    }
+  },
+  "reference_environment": {
+    "version": "2.8.0+cu128",
+    "cuda_version": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "matmul_precision": "highest",
+    "allow_tf32": false,
+    "sol_version": "0.1.1",
+    "numpy_version": "2.4.0",
+    "transformers_version": "4.57.3",
+    "metric_dtype": "float32"
+  }
+}

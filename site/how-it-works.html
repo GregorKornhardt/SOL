@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10120f">
+  <meta name="description" content="How SOL compares two text corpora with double slicing, step by step, and measured examples.">
+  <title>How SOL works</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="preload" href="./assets/sol-pixel.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./readability.css">
+  <link rel="stylesheet" href="./prototype.css">
+  <script type="module" src="./prototype-method.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html" aria-label="SOL home"><svg class="brand-symbol" viewBox="0 0 32 32" aria-hidden="true"><path d="M13 2h6v7h6v6h6v4h-6v6h-6v6h-6v-6H7v-6H1v-4h6V9h6z" fill="currentColor"/><path d="M13 13h6v6h-6z" fill="#10120f"/></svg><span class="pixel">SOL</span><span class="brand-caption">SLICED OPTIMAL TRANSPORT<br>FOR LANGUAGE</span></a>
+      <nav aria-label="Main navigation"><a class="nav-link" href="#method" aria-current="page">How it works</a><a class="nav-link" href="#examples">Examples</a><a class="nav-link" href="./index.html#leaderboard">Leaderboard</a><a class="nav-link" href="./index.html#get-started">Get started</a></nav>
+      <a class="github-link" href="https://github.com/GregorKornhardt/SOL" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m8 8-4 4 4 4m8-8 4 4-4 4m-3-11-2 14"/></svg>Code <span>↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section container" id="method" aria-labelledby="method-title">
+      <div class="section-heading"><div><p class="eyebrow"><span class="section-number">01</span> UNDER THE HOOD</p><h2 id="method-title">How does SOL work?</h2></div><p>Each corpus is a distribution of texts, and each text a distribution of tokens. Double slicing turns this nested optimal transport problem into many one-dimensional ones, each solved exactly by sorting.</p></div>
+      <div class="corpus-inputs" aria-label="The two corpora compared by SOL">
+        <div class="corpus-input corpus-0"><h3>Reference corpus</h3><p>5,000 text sequences</p><div class="corpus-stack" aria-hidden="true"><span>R1</span><span>R2</span><span>R3</span><span>…</span><span>R5000</span></div></div>
+        <div class="corpus-input corpus-1"><h3>Generated corpus</h3><p>5,000 text sequences</p><div class="corpus-stack" aria-hidden="true"><span>G1</span><span>G2</span><span>G3</span><span>…</span><span>G5000</span></div></div>
+      </div>
+      <p class="demo-scale">The OWT benchmark uses 5,000 sequences per corpus. Scroll on to follow <strong>6 synthetic sequences per corpus</strong> so every one stays visible.</p>
+      <details class="sequence-guide">
+        <summary id="sequence-guide-title">One sequence = one text sample. See its tokens.</summary>
+        <div class="sequence-guide-content"><div class="sequence-example"><p>A sequence can be a sentence, a passage, or a fixed-length chunk. For example:</p><blockquote>Small birds fly across the quiet lake as the sun rises.</blockquote><div class="token-example" aria-label="Illustrative split into twelve tokens"><span>Small</span><span>birds</span><span>fly</span><span>across</span><span>the</span><span>quiet</span><span>lake</span><span>as</span><span>the</span><span>sun</span><span>rises</span><span>.</span></div><p class="sequence-note">A token can be a word, part of a word, or punctuation. This token split illustrates the idea; the plotted positions are synthetic.</p></div>
+        <dl class="sequence-key"><div><dt>One dot → one token state</dt><dd>The encoder represents each token with a vector that depends on its context.</dd></div><div><dt>One cloud → one sequence</dt><dd>Keep all token states from one text sample together in one cloud.</dd></div><div><dt>One corpus → many sequences</dt><dd>Green cards R1–R6 form the reference corpus. Pink cards G1–G6 form the generated corpus.</dd></div></dl></div>
+      </details>
+      <div class="scrolly" id="scrolly">
+        <div class="scrolly-visual">
+          <div class="scrolly-panel method-visual">
+  <div class="visual-toolbar"><label class="trace-selector">Follow sequence<select id="trace-select" aria-describedby="sequence-select-hint"><optgroup label="Reference"><option value="0-0">R1</option><option value="0-1">R2</option><option value="0-2">R3</option><option value="0-3">R4</option><option value="0-4">R5</option><option value="0-5">R6</option></optgroup><optgroup label="Generated"><option value="1-0">G1</option><option value="1-1">G2</option><option value="1-2">G3</option><option value="1-3">G4</option><option value="1-4">G5</option><option value="1-5">G6</option></optgroup></select></label><label class="scenario-label"><span class="sr-only">Demo scenario</span><select id="scenario"><option value="shift">Distribution shift</option><option value="match">Identical distributions</option><option value="collapse">Mode collapse</option><option value="spread">Narrower token clouds</option></select></label><p id="sequence-select-hint">Select a sequence here or in the plot. Its label stays with it through all four steps.</p></div>
+            <ol class="scrolly-progress" aria-label="Walkthrough steps"><li><a href="#step-1" aria-label="Step 1: Two corpora of texts.">01</a></li><li><a href="#step-2" aria-label="Step 2: Embed every token in ℝᵈ.">02</a></li><li><a href="#step-3" aria-label="Step 3: Pick one direction ξ.">03</a></li><li><a href="#step-4" aria-label="Step 4: Project the tokens.">04</a></li><li><a href="#step-5" aria-label="Step 5: One distribution per sequence.">05</a></li><li><a href="#step-6" aria-label="Step 6: Sort into a quantile curve.">06</a></li><li><a href="#step-7" aria-label="Step 7: Integrate against g.">07</a></li><li><a href="#step-8" aria-label="Step 8: Sort and match.">08</a></li><li><a href="#step-9" aria-label="Step 9: Average over many slices.">09</a></li></ol>
+            <p class="scrolly-trace" id="scrolly-trace" aria-live="polite"></p>
+            <div class="scrolly-stage"><div id="method-diagram" role="group" aria-label="Six reference and six generated sequences" aria-describedby="method-visual-caption"></div><p id="method-visual-caption"></p></div>
+          </div>
+        </div>
+        <div class="scrolly-steps">
+          <article class="scrolly-step" id="step-1" data-step="0"><p class="eyebrow">STEP 01 / 09</p><h3>Two corpora of texts.</h3><p>A reference corpus and a generated corpus, each a collection of text sequences. The OpenWebText benchmark uses 5,000 per side; here we follow six per corpus.</p><p class="scrolly-note">Scroll to move through the method. The picture follows your reading position.</p></article>
+          <article class="scrolly-step" id="step-2" data-step="1"><p class="eyebrow">STEP 02 / 09</p><h3>Embed every token in ℝᵈ.</h3><p>The encoder maps each token to a contextual hidden state, so each text becomes a cloud of token states. One labeled cloud stands for one sequence.</p><div class="formula" data-formula="0"></div><p class="scrolly-note">Here d = 2 so the clouds can be drawn. GPT-2 Large uses d = 1,280 and Dream 7B uses d = 3,584.</p></article>
+          <article class="scrolly-step" id="step-3" data-step="2"><p class="eyebrow">STEP 03 / 09</p><h3>Pick one direction ξ.</h3><p>Draw a unit direction ξ uniformly from the sphere. Every sequence in both corpora is sliced along this same direction.</p><p class="scrolly-note">SOL repeats the whole construction for many directions and averages the results.</p></article>
+          <article class="scrolly-step" id="step-4" data-step="3"><p class="eyebrow">STEP 04 / 09</p><h3>Project the tokens.</h3><p>Each token state moves perpendicularly onto the line through ξ. Its position along the line, ⟨ξ, hᵢ⟩, is now one number.</p><div class="formula" data-formula="1"></div></article>
+          <article class="scrolly-step" id="step-5" data-step="4"><p class="eyebrow">STEP 05 / 09</p><h3>One distribution per sequence.</h3><p>The projected values of each sequence form a one-dimensional distribution: one row per sequence, R1–R6 and G1–G6, on a shared scale.</p><p class="scrolly-note">This is the first slice. Every sequence keeps its own identity.</p></article>
+          <article class="scrolly-step" id="step-6" data-step="5"><p class="eyebrow">STEP 06 / 09</p><h3>Sort into a quantile curve.</h3><p>Sorting a row gives its quantile function Q: the rank of a token sets the fraction u, and its value sets the height Q(u).</p><p class="scrolly-note">Each dot lands on its sequence’s curve. The 12 curves share one set of axes.</p></article>
+          <article class="scrolly-step" id="step-7" data-step="6"><p class="eyebrow">STEP 07 / 09</p><h3>Integrate against g.</h3><p>A Gaussian-process draw g turns each curve into one number. This second slice leaves each corpus with six scalars, one per sequence.</p><div class="formula" data-formula="2"></div><p class="scrolly-note">μᵢ is the token distribution of sequence i; M maps it to one number.</p></article>
+          <article class="scrolly-step" id="step-8" data-step="7"><p class="eyebrow">STEP 08 / 09</p><h3>Sort and match.</h3><p>The two sets of scalars form a one-dimensional optimal transport problem. It is solved exactly by sorting, in O(n log n): match the values by rank and add the squared gaps.</p><p class="scrolly-note">Matching follows rank, so R1 can meet any G sequence.</p></article>
+          <article class="scrolly-step" id="step-9" data-step="8"><p class="eyebrow">STEP 09 / 09</p><h3>Average over many slices.</h3><p>Repeat for many directions ξ and functions g, average the transport costs, multiply by the hidden dimension d, and take one square root.</p><div class="formula" data-formula="3"></div><p class="scrolly-note">μ and ν are the reference and generated corpora.</p><div class="method-comparison scrolly-score" aria-live="polite"><p id="scenario-explanation"></p><dl><div><dt>Toy SOL · both corpora</dt><dd id="method-sol"></dd></div></dl></div></article>
+        </div>
+      </div>
+      <div class="method-takeaway"><span class="pixel mini-pixel">+</span><p><strong>Lower distance. Closer distributions.</strong> SOL compares both the content of individual texts and the variety across a corpus.</p><a href="https://arxiv.org/pdf/2610.06513#page=5" target="_blank" rel="noreferrer">Explore the math ↗</a></div>
+    </section>
+
+    <section class="section container evidence-section" id="examples" aria-labelledby="examples-title">
+      <div class="section-heading"><div><p class="eyebrow"><span class="section-number">02</span> MEASURED EXAMPLES</p><h2 id="examples-title">How does SOL behave?</h2></div><p>Three controlled comparisons: sampling temperature, context length, and the news topics a corpus covers.</p></div>
+      <div class="evidence-tabs" role="tablist" aria-label="Measured examples">
+        <button role="tab" id="example-temperature" aria-selected="true" aria-controls="evidence-panel" data-experiment="temperature">01 · Temperature</button>
+        <button role="tab" id="example-length" aria-selected="false" aria-controls="evidence-panel" tabindex="-1" data-experiment="length">02 · Text length</button>
+        <button role="tab" id="example-coverage" aria-selected="false" aria-controls="evidence-panel" tabindex="-1" data-experiment="coverage">03 · AG News coverage</button>
+      </div>
+      <div id="evidence-panel" class="evidence-panel" role="tabpanel" aria-labelledby="example-temperature" tabindex="0">
+        <div class="evidence-controls">
+          <label id="evidence-sweep-label">Temperature sweep<select id="evidence-sweep"><option value="models">vMF · Soft-Masked · MDLM</option><option value="gpt2">GPT-2 Large generation</option></select></label>
+          <label id="evidence-encoder-label">Encoder<select id="evidence-encoder"><option value="dream">Dream 7B</option><option value="gpt2">GPT-2 Large</option></select></label>
+          <label id="evidence-length-label">Token cap<select id="evidence-length"><option value="1024">1,024</option><option value="512">512</option></select></label>
+          <label id="evidence-generator-label" hidden>Generator<select id="evidence-generator"><option value="gpt2">GPT-2</option><option value="gpt2-medium">GPT-2 Medium</option><option value="gpt2-large">GPT-2 Large</option><option value="gpt2-xl">GPT-2 XL</option></select></label>
+          <label id="evidence-path-label" hidden>AG News change<select id="evidence-path"><option value="Q2_to_Q1">Remove Sports</option><option value="Q2_to_Q3">Add Business + Sci/Tech</option></select></label>
+          <p id="evidence-context"></p>
+        </div>
+        <div class="evidence-layout"><div class="evidence-plot"><div class="evidence-readout"><label for="evidence-setting" id="evidence-setting-label">Inspect a setting</label><p id="evidence-selected" class="evidence-value" aria-live="polite"></p></div><div id="evidence-chart" class="evidence-chart" role="slider" tabindex="-1" aria-label="Measured experiment setting" aria-disabled="true" aria-valuemin="0" aria-valuemax="6" aria-valuenow="3" aria-describedby="evidence-chart-hint"></div><input id="evidence-setting" type="range" min="0" max="6" value="3" disabled><p id="evidence-chart-hint" class="evidence-chart-hint">Click or drag across the plot to inspect a setting. Arrow keys also work.</p><p class="chart-legend" id="evidence-legend"></p><p id="evidence-mixture" hidden></p></div><div class="evidence-reading"><h3 id="evidence-title">Loading measured examples…</h3><p id="evidence-summary"></p></div></div>
+        <figure id="evidence-excerpt"><figcaption>Corpus excerpt · GPT-2 Large · first saved document</figcaption><blockquote id="evidence-text"></blockquote></figure>
+        <details class="evidence-details"><summary>Values, protocol, and uncertainty</summary><p id="evidence-protocol"></p><p id="evidence-uncertainty"></p><p id="evidence-source" hidden></p><div class="table-scroll" role="region" tabindex="0" aria-label="Measured experiment values"><table><caption id="evidence-table-caption">Measured distances</caption><thead id="evidence-table-head"></thead><tbody id="evidence-table-body"></tbody></table></div><p><a href="./assets/evidence.csv" download>Download all values (CSV) ↓</a> · <a href="./assets/evidence.json" download>Data and source hashes (JSON) ↓</a> · <a href="./assets/coverage-manifest.json" download>AG News protocol and provenance ↓</a></p></details>
+      </div>
+      <noscript><p><a href="./assets/evidence.csv">Download the measured examples as CSV.</a></p></noscript>
+    </section>
+
+    <section class="section container prototype-next"><a class="button button-primary" href="./index.html#leaderboard">See the OpenWebText leaderboard <span>→</span></a></section>
+  </main>
+
+  <footer class="site-footer container"><div><a class="brand" href="./index.html"><span class="pixel">SOL<span class="lime">_</span></span></a><p>Smaller gaps. Better language.</p></div><div class="footer-credit">A research project by<br><span>TU Berlin & University of Göttingen</span></div><div class="footer-links"><a href="https://arxiv.org/pdf/2610.06513" target="_blank" rel="noreferrer">Paper ↗</a><a href="https://github.com/GregorKornhardt/SOL" target="_blank" rel="noreferrer">GitHub ↗</a><button class="text-button" id="cite-button" data-cite>Cite this work ↗</button></div><span class="footer-end">EXPLORE · COMPARE · EVALUATE <span class="lime">✦</span></span></footer>
+  <dialog id="citation-dialog" aria-labelledby="citation-title"><div class="dialog-top"><span class="eyebrow">PASS IT ON</span><button class="square-button dialog-close" aria-label="Close citation">×</button></div><h2 id="citation-title">Cite SOL</h2><pre id="citation-text">@misc{kornhardt2026solmeasuringgapstext,
+      title={SOL: Measuring Gaps between Text Distributions by Double Sliced Wasserstein Metrics},
+      author={Gregor Kornhardt and Moritz Piening and Jannis Chemseddine and Gabriele Steidl},
+      year={2026},
+      eprint={2610.06513},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2610.06513},
+}</pre><button class="button button-primary" id="copy-citation">Copy BibTeX <span>⧉</span></button></dialog>
+  <div class="toast" id="toast" role="status"></div>
+</body>
+</html>

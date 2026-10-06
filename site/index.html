@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10120f">
+  <meta name="description" content="SOL: Sliced Optimal Transport for Language. A distance between text distributions and an OpenWebText leaderboard.">
+  <title>SOL — Measure the gap.</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="preload" href="./assets/sol-pixel.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./readability.css">
+  <link rel="stylesheet" href="./prototype.css">
+  <script type="module" src="./prototype-home.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="SOL home"><svg class="brand-symbol" viewBox="0 0 32 32" aria-hidden="true"><path d="M13 2h6v7h6v6h6v4h-6v6h-6v6h-6v-6H7v-6H1v-4h6V9h6z" fill="currentColor"/><path d="M13 13h6v6h-6z" fill="#10120f"/></svg><span class="pixel">SOL</span><span class="brand-caption">SLICED OPTIMAL TRANSPORT<br>FOR LANGUAGE</span></a>
+      <nav aria-label="Main navigation"><a class="nav-link" href="./how-it-works.html">How it works</a><a class="nav-link" href="./how-it-works.html#examples">Examples</a><a class="nav-link" href="#leaderboard">Leaderboard</a><a class="nav-link" href="#get-started">Get started</a></nav>
+      <a class="github-link" href="https://github.com/GregorKornhardt/SOL" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m8 8-4 4 4 4m8-8 4 4-4 4m-3-11-2 14"/></svg>Code <span>↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-heading">
+        <p class="eyebrow"><span class="status-dot"></span> MEASURE THE GAP</p>
+        <h1 class="pixel" id="hero-title" aria-label="Sliced Optimal Transport for Language (SOL)"><span>S</span>LICED <span>O</span>PTIMAL TRANSPORT FOR <span>L</span>ANGUAGE</h1>
+      </div>
+      <div class="hero-copy">
+        <p class="hero-description">Meet <strong>SOL</strong>: a sample-based distance between generated and reference text that treats each text as a distribution over token states. It works even when model likelihoods are unavailable.</p>
+        <div class="hero-actions"><a class="button button-primary" href="./how-it-works.html">How it works <span>→</span></a><a class="button button-outline" href="https://arxiv.org/pdf/2610.06513" target="_blank" rel="noreferrer">Read the paper <span>↗</span></a><a class="button button-outline" href="https://github.com/GregorKornhardt/SOL" target="_blank" rel="noreferrer">Code <span>↗</span></a><button class="button button-outline" type="button" data-cite>Cite this work <span>⧉</span></button></div>
+        <div class="hero-credit"><span class="credit-line"></span><span><a href="https://scholar.google.com/citations?user=9x3hGTYAAAAJ&amp;hl=de" target="_blank" rel="noreferrer">Gregor Kornhardt</a> · <a href="https://scholar.google.com/citations?user=2TTrhm0AAAAJ" target="_blank" rel="noreferrer">Moritz Piening</a> · <a href="https://jchemseddine.github.io/" target="_blank" rel="noreferrer">Jannis Chemseddine</a> · <a href="https://www.tu.berlin/imageanalysis/ueber-uns/team/prof-dr-gabriele-steidl" target="_blank" rel="noreferrer">Gabriele Steidl</a></span></div>
+      </div>
+    </section>
+
+    <div class="feature-strip container"><div><span class="feature-icon">▧</span><span>SAMPLE BASED</span></div><div><span class="feature-icon">⁙</span><span>USE ALL HIDDEN TOKENS</span></div><div><span class="feature-icon">⇉</span><span>DOUBLE SLICED WASSERSTEIN</span></div><div><span class="feature-icon">↕</span><span>EASY TO EVALUATE</span></div></div>
+
+    <section class="leaderboard-section" id="leaderboard" aria-labelledby="leaderboard-title"><div class="container">
+      <div class="section-heading"><div><p class="eyebrow"><span class="section-number">01</span> BENCHMARK RESULTS</p><h2 id="leaderboard-title">Evaluate language models <span class="muted-heading">on OpenWebText.</span></h2></div><a class="text-button source-link" href="./assets/benchmark-source.tex" target="_blank" rel="noreferrer">View source table <span>↗</span></a></div>
+      <div class="board-banner"><div class="benchmark-icon" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M6 5v29h29M12 27v-9m8 9V9m8 18V14" fill="none" stroke="currentColor" stroke-width="3"/></svg></div><div><h3>OpenWebText leaderboard</h3></div><div class="benchmark-stat"><strong>5,000</strong><span>SAMPLES / CORPUS</span></div><div class="benchmark-stat"><strong>1,024</strong><span>TOKEN HORIZON</span></div><div class="low-score-tag">↓ LOWER SOL IS BETTER</div></div>
+      <details class="reference-guide"><summary>How to read these results</summary><div>
+        <p><strong>Reference = the text to match.</strong> G uses held-out GPT-2-packed OpenWebText. E uses text decoded from ELF’s training corpus. B uses held-out OpenWebText in BD3-LM’s training format, without block-edge tokens. Every row carries its reference badge, G, E or B. All references share one SOL ranking. Rows are sorted together by the selected column.</p>
+        <p><strong>Encoder = the token representation.</strong> Dream 7B and GPT-2 Large turn text into hidden token states before SOL compares them. Select one encoder for a comparison; their raw score scales differ. Dream 7B is selected by default.</p>
+        <p><strong>Real–real control = sampling variation.</strong> Two finite samples of real text still differ. The control gives context for G and E; the table has no real–real control for B. Lower SOL means closer to that reference; it is not an individual text quality grade.</p>
+      </div></details>
+      <div class="leaderboard-controls"><div class="family-filters" role="group" aria-label="Model family"><button class="active" data-family="all" aria-pressed="true">All models</button><button data-family="autoregressive" aria-pressed="false">Autoregressive</button><button data-family="discrete" aria-pressed="false">Discrete diffusion</button><button data-family="continuous" aria-pressed="false">Continuous diffusion</button><button data-family="fewstep" aria-pressed="false">Few-step</button></div><div class="board-selects"><label>REFERENCE<select id="reference"><option value="all">All references</option><option value="G">G · GPT-2-packed OWT</option><option value="E">E · ELF OWT</option><option value="B">B · BD3-packed OWT</option></select></label><label>ENCODER<select id="encoder"><option value="gpt2">GPT-2 Large</option><option value="dream" selected>Dream 7B</option></select></label></div></div>
+      <div id="reference-key" class="reference-key" tabindex="-1" aria-label="Reference badge key"><span><b class="reference-badge reference-g">G</b> GPT-2-packed OpenWebText</span><span><b class="reference-badge reference-e">E</b> ELF OpenWebText</span><span><b class="reference-badge reference-b">B</b> BD3-packed OpenWebText</span><p>G, E and B identify the reference corpus used for each score. Rank numbers run across all references.</p></div>
+      <p id="board-context" class="board-context" role="status"></p>
+      <div class="board-search-row"><label class="search-box"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="8" cy="8" r="5"/><path d="m12 12 5 5"/></svg><input id="model-search" type="search" placeholder="Find a model or sampling setting…" aria-label="Search models and sampling settings"></label><button class="text-button" id="export-csv">Export CSV <span>↓</span></button></div>
+      <p class="mobile-results-hint">Select a model for its family, perplexity, entropy, and full run details.</p>
+      <div class="table-scroll" role="region" aria-label="Model results; select a model for full run details" tabindex="0"><table><caption class="sr-only">SOL benchmark results. Rows are sorted together by the selected metric. G and E badges identify different reference corpora. Ranks are based on ascending SOL across the selected references for the chosen encoder. Select a model for run details.</caption><thead><tr><th scope="col" class="rank-col">RANK</th><th scope="col" class="model-col">MODEL<span class="desktop-setting-heading"> / SAMPLING SETTING</span></th><th scope="col" class="family-col">FAMILY</th><th scope="col" class="score-col" aria-sort="ascending" id="sort-sol"><button data-sort="sol">SOL <span>↓</span></button></th><th scope="col" class="ppl-col" id="sort-ppl"><button data-sort="ppl">GEN. PPL <span>↕</span></button></th><th scope="col" class="entropy-col" id="sort-entropy"><button data-sort="entropy">ENTROPY <span>↕</span></button></th><th scope="col" class="detail-col"><span class="sr-only">Details</span></th></tr></thead><tbody id="leaderboard-body"><tr><td colspan="7" class="table-message">Loading benchmark results…</td></tr></tbody></table></div>
+      <div class="reference-floor" id="reference-floor" aria-live="polite"></div>
+      <div class="board-pagination"><p id="results-count" role="status">Loading configurations…</p><div><button class="square-button" id="prev-page" aria-label="Previous results page" disabled>←</button><span id="page-count">01 / 01</span><button class="square-button" id="next-page" aria-label="Next results page" disabled>→</button></div></div>
+      <p class="benchmark-note">Mean ± population standard deviation across 9 direction/GP seed pairs. Compare SOL within the same reference and encoder; scales differ across encoders. Sampling budgets and training setups vary. Snapshot: 26 September 2026.</p>
+    </div></section>
+
+    <section class="section container get-started" id="get-started" aria-labelledby="start-title"><div><p class="eyebrow"><span class="section-number">02</span> GET STARTED</p><h2 class="pixel" id="start-title">EVALUATE<br><span>YOUR MODEL.</span></h2><p>Bring two text corpora. Get one distributional distance.<br>SOL’s implementation is the <code>sol-metric</code> Python package, imported as <code>sol_metric</code>.</p><a class="button button-outline" href="https://github.com/GregorKornhardt/SOL#readme" target="_blank" rel="noreferrer">Explore the documentation <span>↗</span></a></div><div class="code-panel"><div class="code-toolbar"><div role="tablist" aria-label="Code example"><button id="code-python" role="tab" aria-controls="code-content" aria-selected="true" data-code="python">Python</button><button id="code-install" role="tab" aria-controls="code-content" aria-selected="false" tabindex="-1" data-code="install">Install</button></div><button class="text-button" id="copy-code" aria-label="Copy code example">Copy <span>⧉</span></button></div><pre id="code-content" role="tabpanel" aria-labelledby="code-python" tabindex="0"><code id="code-example"></code></pre><div class="code-footnote"><span class="status-dot"></span> Local install · CPU & CUDA · Apache 2.0</div></div></section>
+  </main>
+
+  <footer class="site-footer container"><div><a class="brand" href="#"><span class="pixel">SOL<span class="lime">_</span></span></a><p>Smaller gaps. Better language.</p></div><div class="footer-credit">A research project by<br><span>TU Berlin & University of Göttingen</span></div><div class="footer-links"><a href="https://arxiv.org/pdf/2610.06513" target="_blank" rel="noreferrer">Paper ↗</a><a href="https://github.com/GregorKornhardt/SOL" target="_blank" rel="noreferrer">GitHub ↗</a><button class="text-button" id="cite-button" data-cite>Cite this work ↗</button></div><span class="footer-end">EXPLORE · COMPARE · EVALUATE <span class="lime">✦</span></span></footer>
+  <dialog id="detail-dialog" aria-labelledby="detail-title"><div class="dialog-top"><span class="eyebrow">RUN DETAILS</span><button class="square-button dialog-close" aria-label="Close run details">×</button></div><h2 id="detail-title"></h2><div id="detail-content"></div></dialog>
+  <dialog id="citation-dialog" aria-labelledby="citation-title"><div class="dialog-top"><span class="eyebrow">PASS IT ON</span><button class="square-button dialog-close" aria-label="Close citation">×</button></div><h2 id="citation-title">Cite SOL</h2><pre id="citation-text">@misc{kornhardt2026solmeasuringgapstext,
+      title={SOL: Measuring Gaps between Text Distributions by Double Sliced Wasserstein Metrics},
+      author={Gregor Kornhardt and Moritz Piening and Jannis Chemseddine and Gabriele Steidl},
+      year={2026},
+      eprint={2610.06513},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2610.06513},
+}</pre><button class="button button-primary" id="copy-citation">Copy BibTeX <span>⧉</span></button></dialog>
+  <div class="toast" id="toast" role="status"></div>
+  <noscript><div class="noscript">Enable JavaScript for the interactive demo and leaderboard, or <a href="./assets/benchmark-source.tex">download the results table</a>.</div></noscript>
+</body>
+</html>

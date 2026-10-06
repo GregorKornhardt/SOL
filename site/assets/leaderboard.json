@@ -1,0 +1,1188 @@
+{
+  "source": "docs/table_experiment_8d_owt_baselines.tex",
+  "updated": "2026-10-06",
+  "samples": 5000,
+  "tokens": 1024,
+  "seedPairs": 9,
+  "quantiles": 64,
+  "directions": {
+    "gpt2": 1024,
+    "olmo": 1024,
+    "dream": 8192
+  },
+  "rows": [
+    {
+      "id": "sol-00",
+      "model": "Real OWT",
+      "reference": "G",
+      "setting": "---",
+      "family": "reference",
+      "entropy": 5.449,
+      "ppl": 14.9,
+      "scores": {
+        "gpt2": {
+          "mean": 0.2002,
+          "std": 0.0116
+        },
+        "olmo": {
+          "mean": 0.78,
+          "std": 0.0552
+        },
+        "dream": {
+          "mean": 2.066,
+          "std": 0.109
+        }
+      }
+    },
+    {
+      "id": "sol-01",
+      "model": "Real ELF OWT",
+      "reference": "E",
+      "setting": "---",
+      "family": "reference",
+      "entropy": 5.402,
+      "ppl": 17.0,
+      "scores": {
+        "gpt2": {
+          "mean": 0.2457,
+          "std": 0.0239
+        },
+        "olmo": {
+          "mean": 0.8857,
+          "std": 0.0636
+        },
+        "dream": {
+          "mean": 2.649,
+          "std": 0.219
+        }
+      }
+    },
+    {
+      "id": "sol-02",
+      "model": "AR",
+      "reference": "G",
+      "setting": "Temperature 1.0",
+      "family": "autoregressive",
+      "entropy": 5.582,
+      "ppl": 34.9,
+      "scores": {
+        "gpt2": {
+          "mean": 1.064,
+          "std": 0.008
+        },
+        "olmo": {
+          "mean": 7.45,
+          "std": 0.132
+        },
+        "dream": {
+          "mean": 22.207,
+          "std": 0.099
+        }
+      }
+    },
+    {
+      "id": "sol-03",
+      "model": "DUO-distilled, T=32",
+      "reference": "G",
+      "setting": "Ancestral",
+      "family": "discrete",
+      "entropy": 5.518,
+      "ppl": 62.3,
+      "scores": {
+        "gpt2": {
+          "mean": 1.67,
+          "std": 0.019
+        },
+        "olmo": {
+          "mean": 11.063,
+          "std": 0.228
+        },
+        "dream": {
+          "mean": 30.595,
+          "std": 0.082
+        }
+      }
+    },
+    {
+      "id": "sol-04",
+      "model": "DUO-distilled, T=32",
+      "reference": "G",
+      "setting": "Greedy tail",
+      "family": "discrete",
+      "entropy": 5.378,
+      "ppl": 46.5,
+      "scores": {
+        "gpt2": {
+          "mean": 1.748,
+          "std": 0.024
+        },
+        "olmo": {
+          "mean": 11.729,
+          "std": 0.253
+        },
+        "dream": {
+          "mean": 31.802,
+          "std": 0.242
+        }
+      }
+    },
+    {
+      "id": "sol-05",
+      "model": "DUO-base",
+      "reference": "G",
+      "setting": "Ancestral, T=1024",
+      "family": "discrete",
+      "entropy": 5.537,
+      "ppl": 76.9,
+      "scores": {
+        "gpt2": {
+          "mean": 1.948,
+          "std": 0.024
+        },
+        "olmo": {
+          "mean": 12.73,
+          "std": 0.25
+        },
+        "dream": {
+          "mean": 32.642,
+          "std": 0.084
+        }
+      }
+    },
+    {
+      "id": "sol-06",
+      "model": "MDLM, exact sampling",
+      "reference": "G",
+      "setting": "DDPM-cache, T=1000",
+      "family": "discrete",
+      "entropy": 5.445,
+      "ppl": 59.4,
+      "scores": {
+        "gpt2": {
+          "mean": 2.185,
+          "std": 0.028
+        },
+        "olmo": {
+          "mean": 14.119,
+          "std": 0.246
+        },
+        "dream": {
+          "mean": 36.394,
+          "std": 0.086
+        }
+      }
+    },
+    {
+      "id": "sol-07",
+      "model": "MDLM, as released",
+      "reference": "G",
+      "setting": "FP32 Gumbel, T=1000",
+      "family": "discrete",
+      "entropy": 5.292,
+      "ppl": 42.8,
+      "scores": {
+        "gpt2": {
+          "mean": 2.34,
+          "std": 0.035
+        },
+        "olmo": {
+          "mean": 14.275,
+          "std": 0.238
+        },
+        "dream": {
+          "mean": 38.444,
+          "std": 0.112
+        }
+      }
+    },
+    {
+      "id": "sol-08",
+      "model": "LDDM-M",
+      "reference": "G",
+      "setting": "Loopholing, T=1024",
+      "family": "discrete",
+      "entropy": 5.536,
+      "ppl": 48.2,
+      "scores": {
+        "gpt2": {
+          "mean": 1.082,
+          "std": 0.011
+        },
+        "olmo": {
+          "mean": 8.266,
+          "std": 0.16
+        },
+        "dream": {
+          "mean": 24.601,
+          "std": 0.038
+        }
+      }
+    },
+    {
+      "id": "sol-09",
+      "model": "LDDM-U",
+      "reference": "G",
+      "setting": "Loopholing, T=1024",
+      "family": "discrete",
+      "entropy": 5.409,
+      "ppl": 28.2,
+      "scores": {
+        "gpt2": {
+          "mean": 1.009,
+          "std": 0.034
+        },
+        "olmo": {
+          "mean": 6.851,
+          "std": 0.168
+        },
+        "dream": {
+          "mean": 24.209,
+          "std": 0.095
+        }
+      }
+    },
+    {
+      "id": "sol-10",
+      "model": "Soft-Masked",
+      "reference": "G",
+      "setting": "MDLM, T=1024, p=0.9",
+      "family": "discrete",
+      "entropy": 5.364,
+      "ppl": 23.6,
+      "scores": {
+        "gpt2": {
+          "mean": 0.7415,
+          "std": 0.009
+        },
+        "olmo": {
+          "mean": 5.39,
+          "std": 0.11
+        },
+        "dream": {
+          "mean": 21.643,
+          "std": 0.103
+        }
+      }
+    },
+    {
+      "id": "sol-11",
+      "model": "Soft-Masked",
+      "reference": "G",
+      "setting": "ReMDM-loop, T=1024, p=0.9",
+      "family": "discrete",
+      "entropy": 5.341,
+      "ppl": 16.7,
+      "scores": {
+        "gpt2": {
+          "mean": 0.6101,
+          "std": 0.0135
+        },
+        "olmo": {
+          "mean": 3.526,
+          "std": 0.066
+        },
+        "dream": {
+          "mean": 18.966,
+          "std": 0.126
+        }
+      }
+    },
+    {
+      "id": "sol-12",
+      "model": "ADLM-large",
+      "reference": "G",
+      "setting": "ReMDM-loop, T=1024, p=0.9",
+      "family": "discrete",
+      "entropy": 5.352,
+      "ppl": 28.9,
+      "scores": {
+        "gpt2": {
+          "mean": 1.183,
+          "std": 0.014
+        },
+        "olmo": {
+          "mean": 7.534,
+          "std": 0.135
+        },
+        "dream": {
+          "mean": 23.601,
+          "std": 0.088
+        }
+      }
+    },
+    {
+      "id": "sol-13",
+      "model": "BD3-LM, block 4",
+      "reference": "B",
+      "setting": "First-hitting, T=5000, p=0.9",
+      "family": "discrete",
+      "entropy": 5.336,
+      "ppl": 24.4,
+      "scores": {
+        "gpt2": {
+          "mean": 1.082,
+          "std": 0.023
+        },
+        "olmo": {
+          "mean": 8.407,
+          "std": 0.18
+        },
+        "dream": {
+          "mean": 26.07,
+          "std": 0.057
+        }
+      }
+    },
+    {
+      "id": "sol-14",
+      "model": "BD3-LM, block 16",
+      "reference": "B",
+      "setting": "First-hitting, T=5000, p=0.9",
+      "family": "discrete",
+      "entropy": 5.344,
+      "ppl": 32.9,
+      "scores": {
+        "gpt2": {
+          "mean": 1.458,
+          "std": 0.027
+        },
+        "olmo": {
+          "mean": 10.709,
+          "std": 0.218
+        },
+        "dream": {
+          "mean": 30.315,
+          "std": 0.091
+        }
+      }
+    },
+    {
+      "id": "sol-15",
+      "model": "vMF, self-cond.",
+      "reference": "G",
+      "setting": "PC-warp, S=128",
+      "family": "continuous",
+      "entropy": 5.222,
+      "ppl": 30.2,
+      "scores": {
+        "gpt2": {
+          "mean": 1.354,
+          "std": 0.034
+        },
+        "olmo": {
+          "mean": 8.607,
+          "std": 0.197
+        },
+        "dream": {
+          "mean": 29.225,
+          "std": 0.089
+        }
+      }
+    },
+    {
+      "id": "sol-16",
+      "model": "vMF, self-cond. (base)",
+      "reference": "G",
+      "setting": "PC-warp, S=128",
+      "family": "continuous",
+      "entropy": 5.315,
+      "ppl": 45.1,
+      "scores": {
+        "gpt2": {
+          "mean": 1.524,
+          "std": 0.022
+        },
+        "olmo": {
+          "mean": 10.657,
+          "std": 0.221
+        },
+        "dream": {
+          "mean": 31.379,
+          "std": 0.076
+        }
+      }
+    },
+    {
+      "id": "sol-17",
+      "model": "vMF, self-cond.",
+      "reference": "G",
+      "setting": "SDE-warp, S=128, \u03c3=0.01, q=1",
+      "family": "continuous",
+      "entropy": 5.348,
+      "ppl": 43.6,
+      "scores": {
+        "gpt2": {
+          "mean": 1.386,
+          "std": 0.022
+        },
+        "olmo": {
+          "mean": 9.884,
+          "std": 0.196
+        },
+        "dream": {
+          "mean": 30.375,
+          "std": 0.074
+        }
+      }
+    },
+    {
+      "id": "sol-18",
+      "model": "vMF, no self-cond.",
+      "reference": "G",
+      "setting": "PC-warp, S=128",
+      "family": "continuous",
+      "entropy": 5.533,
+      "ppl": 141.9,
+      "scores": {
+        "gpt2": {
+          "mean": 2.928,
+          "std": 0.036
+        },
+        "olmo": {
+          "mean": 18.157,
+          "std": 0.343
+        },
+        "dream": {
+          "mean": 45.9,
+          "std": 0.13
+        }
+      }
+    },
+    {
+      "id": "sol-19",
+      "model": "vMF",
+      "reference": "G",
+      "setting": "ODE-warp, S=1024",
+      "family": "continuous",
+      "entropy": 5.456,
+      "ppl": 75.4,
+      "scores": {
+        "gpt2": {
+          "mean": 1.901,
+          "std": 0.024
+        },
+        "olmo": {
+          "mean": 12.781,
+          "std": 0.268
+        },
+        "dream": {
+          "mean": 33.832,
+          "std": 0.113
+        }
+      }
+    },
+    {
+      "id": "sol-20",
+      "model": "vMF",
+      "reference": "G",
+      "setting": "PC-warp, S=1024",
+      "family": "continuous",
+      "entropy": 5.432,
+      "ppl": 56.3,
+      "scores": {
+        "gpt2": {
+          "mean": 1.546,
+          "std": 0.021
+        },
+        "olmo": {
+          "mean": 10.777,
+          "std": 0.233
+        },
+        "dream": {
+          "mean": 30.583,
+          "std": 0.099
+        }
+      }
+    },
+    {
+      "id": "sol-21",
+      "model": "VP, self-cond.",
+      "reference": "G",
+      "setting": "SDE-warp, S=128, \u03c3=0.1, q=1",
+      "family": "continuous",
+      "entropy": 5.355,
+      "ppl": 50.9,
+      "scores": {
+        "gpt2": {
+          "mean": 1.606,
+          "std": 0.023
+        },
+        "olmo": {
+          "mean": 10.898,
+          "std": 0.222
+        },
+        "dream": {
+          "mean": 31.972,
+          "std": 0.072
+        }
+      }
+    },
+    {
+      "id": "sol-22",
+      "model": "VP",
+      "reference": "G",
+      "setting": "ODE-warp, S=1024",
+      "family": "continuous",
+      "entropy": 5.435,
+      "ppl": 66.1,
+      "scores": {
+        "gpt2": {
+          "mean": 1.775,
+          "std": 0.022
+        },
+        "olmo": {
+          "mean": 11.997,
+          "std": 0.247
+        },
+        "dream": {
+          "mean": 33.275,
+          "std": 0.076
+        }
+      }
+    },
+    {
+      "id": "sol-23",
+      "model": "VP",
+      "reference": "G",
+      "setting": "PC-warp, S=1024",
+      "family": "continuous",
+      "entropy": 5.43,
+      "ppl": 59.0,
+      "scores": {
+        "gpt2": {
+          "mean": 1.642,
+          "std": 0.022
+        },
+        "olmo": {
+          "mean": 11.168,
+          "std": 0.232
+        },
+        "dream": {
+          "mean": 31.664,
+          "std": 0.068
+        }
+      }
+    },
+    {
+      "id": "sol-24",
+      "model": "LangFlow",
+      "reference": "G",
+      "setting": "NFE=128",
+      "family": "continuous",
+      "entropy": 5.425,
+      "ppl": 59.0,
+      "scores": {
+        "gpt2": {
+          "mean": 1.604,
+          "std": 0.018
+        },
+        "olmo": {
+          "mean": 11.93,
+          "std": 0.226
+        },
+        "dream": {
+          "mean": 32.488,
+          "std": 0.066
+        }
+      }
+    },
+    {
+      "id": "sol-25",
+      "model": "LangFlow",
+      "reference": "G",
+      "setting": "NFE=1024",
+      "family": "continuous",
+      "entropy": 5.257,
+      "ppl": 36.9,
+      "scores": {
+        "gpt2": {
+          "mean": 1.371,
+          "std": 0.019
+        },
+        "olmo": {
+          "mean": 9.886,
+          "std": 0.193
+        },
+        "dream": {
+          "mean": 30.541,
+          "std": 0.071
+        }
+      }
+    },
+    {
+      "id": "sol-26",
+      "model": "ELF-B",
+      "reference": "E",
+      "setting": "SDE, 32 steps, CFG=3",
+      "family": "continuous",
+      "entropy": 5.156,
+      "ppl": 24.0,
+      "scores": {
+        "gpt2": {
+          "mean": 2.066,
+          "std": 0.055
+        },
+        "olmo": {
+          "mean": 12.817,
+          "std": 0.314
+        },
+        "dream": {
+          "mean": 37.584,
+          "std": 0.218
+        }
+      }
+    },
+    {
+      "id": "sol-27",
+      "model": "ELF-B",
+      "reference": "E",
+      "setting": "SDE, 32 steps, CFG=1",
+      "family": "continuous",
+      "entropy": 5.219,
+      "ppl": 29.4,
+      "scores": {
+        "gpt2": {
+          "mean": 2.283,
+          "std": 0.057
+        },
+        "olmo": {
+          "mean": 13.633,
+          "std": 0.332
+        },
+        "dream": {
+          "mean": 39.144,
+          "std": 0.232
+        }
+      }
+    },
+    {
+      "id": "sol-28",
+      "model": "ELF-B",
+      "reference": "E",
+      "setting": "ODE, 128 steps, CFG=1",
+      "family": "continuous",
+      "entropy": 5.308,
+      "ppl": 45.4,
+      "scores": {
+        "gpt2": {
+          "mean": 1.874,
+          "std": 0.029
+        },
+        "olmo": {
+          "mean": 13.565,
+          "std": 0.295
+        },
+        "dream": {
+          "mean": 33.677,
+          "std": 0.116
+        }
+      }
+    },
+    {
+      "id": "sol-29",
+      "model": "ELF-B",
+      "reference": "E",
+      "setting": "ODE, 1024 steps, CFG=1",
+      "family": "continuous",
+      "entropy": 5.09,
+      "ppl": 24.0,
+      "scores": {
+        "gpt2": {
+          "mean": 1.778,
+          "std": 0.031
+        },
+        "olmo": {
+          "mean": 12.357,
+          "std": 0.292
+        },
+        "dream": {
+          "mean": 33.32,
+          "std": 0.188
+        }
+      }
+    },
+    {
+      "id": "sol-30",
+      "model": "ELF-B",
+      "reference": "E",
+      "setting": "SDE, 128 steps, CFG=1",
+      "family": "continuous",
+      "entropy": 5.123,
+      "ppl": 21.9,
+      "scores": {
+        "gpt2": {
+          "mean": 1.654,
+          "std": 0.045
+        },
+        "olmo": {
+          "mean": 10.98,
+          "std": 0.257
+        },
+        "dream": {
+          "mean": 32.878,
+          "std": 0.26
+        }
+      }
+    },
+    {
+      "id": "sol-31",
+      "model": "ELF-B",
+      "reference": "E",
+      "setting": "SDE, 64 steps, CFG=0.5, \u03b3=0.5",
+      "family": "continuous",
+      "entropy": 5.385,
+      "ppl": 56.3,
+      "scores": {
+        "gpt2": {
+          "mean": 2.181,
+          "std": 0.035
+        },
+        "olmo": {
+          "mean": 14.796,
+          "std": 0.318
+        },
+        "dream": {
+          "mean": 35.648,
+          "std": 0.13
+        }
+      }
+    },
+    {
+      "id": "sol-32",
+      "model": "ELF-M",
+      "reference": "E",
+      "setting": "ODE, 64 steps, CFG=1.25, \u03b3=0",
+      "family": "continuous",
+      "entropy": 5.399,
+      "ppl": 53.0,
+      "scores": {
+        "gpt2": {
+          "mean": 1.695,
+          "std": 0.023
+        },
+        "olmo": {
+          "mean": 12.805,
+          "std": 0.268
+        },
+        "dream": {
+          "mean": 32.153,
+          "std": 0.099
+        }
+      }
+    },
+    {
+      "id": "sol-33",
+      "model": "ELF-L",
+      "reference": "E",
+      "setting": "SDE, 64 steps, CFG=1, \u03b3=0.75",
+      "family": "continuous",
+      "entropy": 5.398,
+      "ppl": 35.7,
+      "scores": {
+        "gpt2": {
+          "mean": 1.591,
+          "std": 0.045
+        },
+        "olmo": {
+          "mean": 10.039,
+          "std": 0.232
+        },
+        "dream": {
+          "mean": 32.013,
+          "std": 0.274
+        }
+      }
+    },
+    {
+      "id": "sol-34",
+      "model": "ELF-B",
+      "reference": "E",
+      "setting": "SDE, 64 steps, CFG=1, \u03b3=1",
+      "family": "continuous",
+      "entropy": 5.216,
+      "ppl": 28.5,
+      "scores": {
+        "gpt2": {
+          "mean": 1.788,
+          "std": 0.043
+        },
+        "olmo": {
+          "mean": 11.952,
+          "std": 0.271
+        },
+        "dream": {
+          "mean": 33.689,
+          "std": 0.228
+        }
+      }
+    },
+    {
+      "id": "sol-35",
+      "model": "ELF-M",
+      "reference": "E",
+      "setting": "SDE, 64 steps, CFG=1, \u03b3=1",
+      "family": "continuous",
+      "entropy": 5.309,
+      "ppl": 33.4,
+      "scores": {
+        "gpt2": {
+          "mean": 1.665,
+          "std": 0.033
+        },
+        "olmo": {
+          "mean": 11.719,
+          "std": 0.261
+        },
+        "dream": {
+          "mean": 32.671,
+          "std": 0.205
+        }
+      }
+    },
+    {
+      "id": "sol-36",
+      "model": "ELF-L",
+      "reference": "E",
+      "setting": "SDE, 64 steps, CFG=1, \u03b3=1",
+      "family": "continuous",
+      "entropy": 5.378,
+      "ppl": 32.9,
+      "scores": {
+        "gpt2": {
+          "mean": 1.601,
+          "std": 0.048
+        },
+        "olmo": {
+          "mean": 9.829,
+          "std": 0.227
+        },
+        "dream": {
+          "mean": 31.969,
+          "std": 0.29
+        }
+      }
+    },
+    {
+      "id": "sol-37",
+      "model": "FLM",
+      "reference": "G",
+      "setting": "Euler, 1024 steps",
+      "family": "fewstep",
+      "entropy": 5.345,
+      "ppl": 63.1,
+      "scores": {
+        "gpt2": {
+          "mean": 3.458,
+          "std": 0.068
+        },
+        "olmo": {
+          "mean": 20.126,
+          "std": 0.387
+        },
+        "dream": {
+          "mean": 48.387,
+          "std": 0.189
+        }
+      }
+    },
+    {
+      "id": "sol-38",
+      "model": "FMLM",
+      "reference": "G",
+      "setting": "1 step",
+      "family": "fewstep",
+      "entropy": 5.168,
+      "ppl": 167.8,
+      "scores": {
+        "gpt2": {
+          "mean": 6.857,
+          "std": 0.1
+        },
+        "olmo": {
+          "mean": 30.806,
+          "std": 0.647
+        },
+        "dream": {
+          "mean": 79.042,
+          "std": 0.658
+        }
+      }
+    },
+    {
+      "id": "sol-39",
+      "model": "FMLM",
+      "reference": "G",
+      "setting": "2 steps",
+      "family": "fewstep",
+      "entropy": 5.295,
+      "ppl": 135.1,
+      "scores": {
+        "gpt2": {
+          "mean": 5.683,
+          "std": 0.085
+        },
+        "olmo": {
+          "mean": 27.826,
+          "std": 0.544
+        },
+        "dream": {
+          "mean": 71.134,
+          "std": 0.494
+        }
+      }
+    },
+    {
+      "id": "sol-40",
+      "model": "FMLM",
+      "reference": "G",
+      "setting": "4 steps",
+      "family": "fewstep",
+      "entropy": 5.361,
+      "ppl": 111.0,
+      "scores": {
+        "gpt2": {
+          "mean": 4.743,
+          "std": 0.07
+        },
+        "olmo": {
+          "mean": 25.303,
+          "std": 0.492
+        },
+        "dream": {
+          "mean": 63.074,
+          "std": 0.409
+        }
+      }
+    },
+    {
+      "id": "sol-41",
+      "model": "FMLM*",
+      "reference": "G",
+      "setting": "CTM, 1 step, CFG=1, \u03b3=1",
+      "family": "fewstep",
+      "entropy": 5.319,
+      "ppl": 120.3,
+      "scores": {
+        "gpt2": {
+          "mean": 3.69,
+          "std": 0.054
+        },
+        "olmo": {
+          "mean": 18.808,
+          "std": 0.373
+        },
+        "dream": {
+          "mean": 48.859,
+          "std": 0.169
+        }
+      }
+    },
+    {
+      "id": "sol-42",
+      "model": "FMLM*",
+      "reference": "G",
+      "setting": "CTM, 1 step, CFG=5, \u03b3=1",
+      "family": "fewstep",
+      "entropy": 5.368,
+      "ppl": 116.0,
+      "scores": {
+        "gpt2": {
+          "mean": 3.431,
+          "std": 0.046
+        },
+        "olmo": {
+          "mean": 18.16,
+          "std": 0.382
+        },
+        "dream": {
+          "mean": 46.273,
+          "std": 0.099
+        }
+      }
+    },
+    {
+      "id": "sol-43",
+      "model": "FMLM*",
+      "reference": "G",
+      "setting": "CTM, 2 steps, CFG=1, \u03b3=0.75",
+      "family": "fewstep",
+      "entropy": 5.411,
+      "ppl": 99.5,
+      "scores": {
+        "gpt2": {
+          "mean": 2.932,
+          "std": 0.042
+        },
+        "olmo": {
+          "mean": 16.491,
+          "std": 0.32
+        },
+        "dream": {
+          "mean": 43.43,
+          "std": 0.195
+        }
+      }
+    },
+    {
+      "id": "sol-44",
+      "model": "FMLM*",
+      "reference": "G",
+      "setting": "CTM, 2 steps, CFG=5, \u03b3=0.75",
+      "family": "fewstep",
+      "entropy": 5.458,
+      "ppl": 97.4,
+      "scores": {
+        "gpt2": {
+          "mean": 2.737,
+          "std": 0.035
+        },
+        "olmo": {
+          "mean": 15.941,
+          "std": 0.322
+        },
+        "dream": {
+          "mean": 41.12,
+          "std": 0.139
+        }
+      }
+    },
+    {
+      "id": "sol-45",
+      "model": "FMLM*",
+      "reference": "G",
+      "setting": "CTM, 5 steps, CFG=1, \u03b3=1",
+      "family": "fewstep",
+      "entropy": 5.294,
+      "ppl": 66.5,
+      "scores": {
+        "gpt2": {
+          "mean": 2.86,
+          "std": 0.054
+        },
+        "olmo": {
+          "mean": 15.556,
+          "std": 0.295
+        },
+        "dream": {
+          "mean": 43.731,
+          "std": 0.188
+        }
+      }
+    },
+    {
+      "id": "sol-46",
+      "model": "FMLM*",
+      "reference": "G",
+      "setting": "CTM, 5 steps, CFG=5, \u03b3=1",
+      "family": "fewstep",
+      "entropy": 5.415,
+      "ppl": 70.8,
+      "scores": {
+        "gpt2": {
+          "mean": 2.486,
+          "std": 0.042
+        },
+        "olmo": {
+          "mean": 14.869,
+          "std": 0.291
+        },
+        "dream": {
+          "mean": 40.177,
+          "std": 0.114
+        }
+      }
+    },
+    {
+      "id": "sol-47",
+      "model": "FMLM*",
+      "reference": "G",
+      "setting": "Flow map, 8 steps, CFG=5, \u03b3=0",
+      "family": "fewstep",
+      "entropy": 5.464,
+      "ppl": 82.8,
+      "scores": {
+        "gpt2": {
+          "mean": 2.37,
+          "std": 0.032
+        },
+        "olmo": {
+          "mean": 14.438,
+          "std": 0.295
+        },
+        "dream": {
+          "mean": 38.233,
+          "std": 0.158
+        }
+      }
+    },
+    {
+      "id": "sol-48",
+      "model": "FMLM*",
+      "reference": "G",
+      "setting": "Flow map, 128 steps, CFG=5, \u03b3=0",
+      "family": "fewstep",
+      "entropy": 5.456,
+      "ppl": 79.0,
+      "scores": {
+        "gpt2": {
+          "mean": 2.313,
+          "std": 0.032
+        },
+        "olmo": {
+          "mean": 14.268,
+          "std": 0.285
+        },
+        "dream": {
+          "mean": 38.482,
+          "std": 0.152
+        }
+      }
+    },
+    {
+      "id": "sol-49",
+      "model": "ELF*",
+      "reference": "G",
+      "setting": "CDEQ, 128 steps, CFG=1, \u03b3=0",
+      "family": "fewstep",
+      "entropy": 5.414,
+      "ppl": 73.8,
+      "scores": {
+        "gpt2": {
+          "mean": 2.222,
+          "std": 0.034
+        },
+        "olmo": {
+          "mean": 14.245,
+          "std": 0.267
+        },
+        "dream": {
+          "mean": 37.827,
+          "std": 0.128
+        }
+      }
+    },
+    {
+      "id": "sol-50",
+      "model": "ELF*",
+      "reference": "G",
+      "setting": "CDEQ, 128 steps, CFG=5, \u03b3=0",
+      "family": "fewstep",
+      "entropy": 5.384,
+      "ppl": 60.8,
+      "scores": {
+        "gpt2": {
+          "mean": 1.952,
+          "std": 0.029
+        },
+        "olmo": {
+          "mean": 13.105,
+          "std": 0.252
+        },
+        "dream": {
+          "mean": 35.95,
+          "std": 0.103
+        }
+      }
+    }
+  ]
+}

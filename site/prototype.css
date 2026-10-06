@@ -1,0 +1,86 @@
+/* Two-page prototype: scroll-driven method walkthrough. */
+.scrolly { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 0 44px; margin-top: 36px; border-top: 1px solid var(--line); }
+.scrolly-visual { position: relative; }
+/* Pinned under the header and only as tall as its content, up to the window height. */
+.scrolly-panel { position: sticky; top: var(--header-height, 89px); max-height: calc(100vh - var(--header-height, 89px)); max-height: calc(100dvh - var(--header-height, 89px)); border: 1px solid var(--line); border-top: 0; overflow: hidden; }
+.scrolly-panel .visual-toolbar { padding: 14px 20px 6px; flex-wrap: wrap; }
+.scrolly #sequence-select-hint { display: none; }
+.scrolly-progress { display: flex; gap: 6px; list-style: none; margin: 4px 20px 0; padding: 0; }
+.scrolly-progress a { display: block; padding: 4px 7px; border: 1px solid var(--line); color: var(--muted); font: 11px/1.2 var(--mono); text-decoration: none; }
+.scrolly-progress a[aria-current="step"] { color: #192010; background: var(--lime); border-color: var(--lime); }
+.scrolly-progress a:hover, .scrolly-progress a:focus-visible { border-color: var(--lime); }
+.scrolly-trace { margin: 10px 20px 0; padding-left: 10px; border-left: 2px solid var(--trace-color, var(--lime)); color: var(--trace-color, var(--lime)); font-size: 13px; line-height: 1.4; min-height: 1.4em; }
+/* The caption sits directly under the diagram. */
+.scrolly-stage { flex: 0 1 auto; min-height: 0; overflow: hidden; padding: 12px 0 14px; }
+.scrolly-stage #method-diagram { transform-origin: top left; }
+/* Scrolling replaces the play buttons and their status lines. */
+.scrolly .embedding-controls, .scrolly .embedding-status { display: none !important; }
+.scrolly-panel #method-visual-caption { flex-shrink: 0; margin: 0; padding: 10px 20px 0; font-size: 12px; color: var(--muted); }
+/* Text on the left, pinned diagram on the right. */
+/* Room below the last step keeps the panel pinned until that step is three-quarters done. */
+.scrolly-steps { order: -1; padding: 18vh 0 38vh; }
+.scrolly-step { min-height: 72vh; display: flex; flex-direction: column; justify-content: center; padding: 0 4px; opacity: .3; transition: opacity .35s ease; container-type: inline-size; }
+.scrolly-step.is-active { opacity: 1; }
+.scrolly-step h3 { font-size: 24px; margin: 6px 0 14px; }
+.scrolly-step > p:not(.eyebrow) { color: var(--text); font-size: 16px; line-height: 1.7; margin: 0 0 12px; }
+.scrolly-step .scrolly-note { color: var(--muted) !important; font-size: 13px !important; }
+.scrolly-step .formula { white-space: normal; line-height: 1.7; overflow-x: auto; }
+.scrolly-step .formula math { font-family: 'STIX Two Math', math; font-size: 1.3em; color: var(--lime); }
+.scrolly-step .formula math + math { margin-top: .45em; }
+.scrolly-step .scrolly-score { margin-top: 18px; }
+.prototype-next { display: flex; justify-content: center; padding-block: 20px 70px; }
+@media (max-width: 900px) {
+  /* Stack panel and steps in one cell so the panel stays pinned over all steps.
+     The panel takes about half of the window below the header; the text the rest. */
+  .scrolly { grid-template-columns: minmax(0, 1fr); grid-template-areas: "stack"; border-top: 0; }
+  .scrolly-visual, .scrolly-steps { grid-area: stack; }
+  .scrolly-steps { order: 0; }
+  .scrolly-panel { height: 48vh; height: 48dvh; max-height: none; z-index: 3; border: 1px solid var(--line); }
+  .scrolly-stage { flex: 1; padding: 6px 0 8px; }
+  /* One compact toolbar row; the steps show their own numbers. */
+  .scrolly-panel .visual-toolbar { padding: 8px 10px 0; flex-wrap: nowrap; gap: 8px; }
+  .scrolly-panel .visual-toolbar .trace-selector { font-size: 0; gap: 0; }
+  .scrolly-panel .visual-toolbar select { font-size: 12px; min-height: 34px; padding-block: 4px; }
+  .scrolly-progress, .scrolly-trace, .scrolly-panel #method-visual-caption { display: none; }
+  /* Diagrams sized for the panel instead of scaled down. */
+  .scrolly #method-diagram { padding-inline: 6px; }
+  .scrolly .embedding-stage { min-height: 0; }
+  .scrolly .embedding-sources { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .scrolly .corpus-group h4 { font-size: 11px; margin: 0 0 3px; }
+  .scrolly .corpus-group h4 span { display: none; }
+  .scrolly .sequence-cards { gap: 2px; }
+  /* One line per sentence; a sentence wider than its card ends in an ellipsis. */
+  .scrolly .sequence-card.embedding-sequence { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 3px; min-height: 0; padding: 2px 4px; }
+  .scrolly .sequence-card strong { font-size: 10px; line-height: 1.3; }
+  .scrolly .embedding-sentence { font-size: 10px; line-height: 1.3; letter-spacing: -.15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .scrolly .embedding-key { margin-top: 6px; font-size: 10px; gap: 4px 12px; }
+  .scrolly .slicing-plot { height: 290px; }
+  .scrolly .classic-legend { margin-bottom: 4px; }
+  .scrolly #method-diagram #method-canvas { height: 300px; }
+  .scrolly-steps { padding: calc(48vh + 2vh) 0 26vh; padding-top: calc(48dvh + 2vh); }
+  .scrolly-step { min-height: 42vh; padding: 0 2px; }
+  .scrolly-step h3 { font-size: 19px; margin: 4px 0 8px; }
+  .scrolly-step > p:not(.eyebrow) { font-size: 14px; line-height: 1.55; margin-bottom: 8px; }
+  .scrolly-step .scrolly-note { font-size: 12px !important; }
+  .scrolly-step .formula { padding: 6px 0; margin: 4px 0; }
+  .scrolly-step .formula math { font-size: 1.05em; }
+  .scrolly-step .scrolly-score { margin-top: 8px; padding: 8px 12px; gap: 10px; }
+  .scrolly-step .scrolly-score div { display: flex; align-items: baseline; gap: 10px; }
+  .scrolly-step .scrolly-score dd { margin: 0; font-size: 18px; }
+  .scrolly-step .scrolly-score #scenario-explanation { display: none; }
+}
+/* Short phones: the small notes give way so each step's main text fits below the panel. */
+@media (max-width: 900px) and (max-height: 780px) {
+  .scrolly-step .scrolly-note { display: none; }
+  .scrolly-step h3 { font-size: 17px; margin: 2px 0 6px; }
+  .scrolly-step > p:not(.eyebrow) { font-size: 13px; line-height: 1.5; }
+  .scrolly-step .formula math { font-size: .95em; }
+}
+/* Very short phones give the text a little more of the window. */
+@media (max-width: 900px) and (max-height: 700px) {
+  .scrolly-panel { height: 43vh; height: 43dvh; }
+  .scrolly-steps { padding-top: calc(43vh + 2vh); padding-top: calc(43dvh + 2vh); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scrolly-step { transition: none; }
+}

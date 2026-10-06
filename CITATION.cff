@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the SOL paper below."
+title: "SOL: Sliced Optimal Transport for Language"
+type: software
+version: 0.1.1
+authors:
+  - family-names: Kornhardt
+    given-names: Gregor
+  - family-names: Piening
+    given-names: Moritz
+  - family-names: Chemseddine
+    given-names: Jannis
+  - family-names: Steidl
+    given-names: Gabriele
+license: Apache-2.0
+repository-code: "https://github.com/GregorKornhardt/SOL"
+url: "https://github.com/GregorKornhardt/SOL"
+abstract: >-
+  SOL compares distributions of contextual token embeddings using empirical
+  quantile-bin features and double-sliced Wasserstein distance. The sol-metric
+  package provides NumPy CPU and optional Torch CUDA execution, transformer
+  text encoding, reusable features and frozen LM1B/OpenWebText validation inputs.
+keywords:
+  - optimal transport
+  - language evaluation
+  - Wasserstein distance
+preferred-citation:
+  type: article
+  title: "SOL: Measuring Gaps between Text Distributions by Double Sliced Wasserstein Metrics"
+  authors:
+    - family-names: Kornhardt
+      given-names: Gregor
+    - family-names: Piening
+      given-names: Moritz
+    - family-names: Chemseddine
+      given-names: Jannis
+    - family-names: Steidl
+      given-names: Gabriele
+  year: 2026
+  journal: "arXiv preprint arXiv:2610.06513"
+  url: "https://arxiv.org/abs/2610.06513"
+  identifiers:
+    - type: other
+      value: "arXiv:2610.06513"
+      description: "arXiv identifier (cs.CL)"

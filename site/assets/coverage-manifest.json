@@ -1,0 +1,4592 @@
+{
+  "dataset": "AG News",
+  "topics": [
+    "World",
+    "Sports",
+    "Business",
+    "Sci/Tech"
+  ],
+  "reference_shares": {
+    "World": 50,
+    "Sports": 50,
+    "Business": 0,
+    "Sci/Tech": 0
+  },
+  "samples_per_corpus": 5000,
+  "token_cap": 1024,
+  "encoder": "GPT-2 Large",
+  "data_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "theta_seeds": [
+    0,
+    1,
+    2
+  ],
+  "gp_seeds": [
+    0,
+    1,
+    2
+  ],
+  "target_percentages": [
+    0,
+    1,
+    2,
+    5,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    95,
+    98,
+    99,
+    100
+  ],
+  "method": {
+    "quantile_convention": "empirical_bin_average_v1",
+    "gp_normalization": "none",
+    "gp_sample_centering": false,
+    "L": 1024,
+    "K": 1024,
+    "M": 64,
+    "lengthscale": 0.1,
+    "theta_seeds": [
+      0,
+      1,
+      2
+    ],
+    "gp_seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "paths": {
+    "Q2_to_Q1": "World + Sports \u2192 World only",
+    "Q2_to_Q3": "World + Sports \u2192 all four topics"
+  },
+  "protocols": [
+    {
+      "method": {
+        "quantile_convention": "empirical_bin_average_v1",
+        "gp_normalization": "none",
+        "gp_sample_centering": false,
+        "L": 1024,
+        "K": 1024,
+        "M": 64,
+        "lengthscale": 0.1,
+        "theta_seeds": [
+          0,
+          1,
+          2
+        ],
+        "gp_seeds": [
+          0,
+          1,
+          2
+        ]
+      },
+      "n": 5000,
+      "horizon": 1024,
+      "dimension": 1280,
+      "model_revision": "32b71b12589c2f8d625668d2335a01cac3249519",
+      "source_manifest_sha256": "eb18c15031933c7ff99686cdea0d63de758622a0365306a299d5d2d04dc94a82",
+      "interpolation_manifest_sha256": "5e0185db4c71e5b20dc1580c2dfefccbbeabd08e16b4caf037780dd936582f37",
+      "original_score_sha256": "6f60da8d49ee00afbf4ecced80d84a8d40d9db0a41f1b443dedd6a546671f4a8",
+      "arms": {
+        "Q2": {
+          "path": "shared_Q2_endpoint",
+          "target_share_percent": 0,
+          "q2_share_percent": 100,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 5000
+          },
+          "class_counts": {
+            "Sports": 2500,
+            "World": 2500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 0
+            },
+            "Q2": {
+              "Sports": 2500,
+              "World": 2500
+            }
+          }
+        },
+        "Q2_to_Q1_p001": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 1,
+          "q2_share_percent": 99,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4950,
+            "Q1": 50
+          },
+          "class_counts": {
+            "World": 2525,
+            "Sports": 2475
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 50
+            },
+            "Q2": {
+              "Sports": 2475,
+              "World": 2475
+            }
+          }
+        },
+        "Q2_to_Q1_p002": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 2,
+          "q2_share_percent": 98,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4900,
+            "Q1": 100
+          },
+          "class_counts": {
+            "Sports": 2450,
+            "World": 2550
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 100
+            },
+            "Q2": {
+              "Sports": 2450,
+              "World": 2450
+            }
+          }
+        },
+        "Q2_to_Q1_p005": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 5,
+          "q2_share_percent": 95,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4750,
+            "Q1": 250
+          },
+          "class_counts": {
+            "World": 2625,
+            "Sports": 2375
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 250
+            },
+            "Q2": {
+              "Sports": 2375,
+              "World": 2375
+            }
+          }
+        },
+        "Q2_to_Q1_p010": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 10,
+          "q2_share_percent": 90,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4500,
+            "Q1": 500
+          },
+          "class_counts": {
+            "Sports": 2250,
+            "World": 2750
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 500
+            },
+            "Q2": {
+              "Sports": 2250,
+              "World": 2250
+            }
+          }
+        },
+        "Q2_to_Q1_p020": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 20,
+          "q2_share_percent": 80,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4000,
+            "Q1": 1000
+          },
+          "class_counts": {
+            "World": 3000,
+            "Sports": 2000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 1000
+            },
+            "Q2": {
+              "Sports": 2000,
+              "World": 2000
+            }
+          }
+        },
+        "Q2_to_Q1_p030": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 30,
+          "q2_share_percent": 70,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3500,
+            "Q1": 1500
+          },
+          "class_counts": {
+            "Sports": 1750,
+            "World": 3250
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 1500
+            },
+            "Q2": {
+              "Sports": 1750,
+              "World": 1750
+            }
+          }
+        },
+        "Q2_to_Q1_p040": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 40,
+          "q2_share_percent": 60,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 2000,
+            "Q2": 3000
+          },
+          "class_counts": {
+            "World": 3500,
+            "Sports": 1500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 2000
+            },
+            "Q2": {
+              "Sports": 1500,
+              "World": 1500
+            }
+          }
+        },
+        "Q2_to_Q1_p050": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 50,
+          "q2_share_percent": 50,
+          "boundary_distance_percent": 50,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 2500,
+            "Q2": 2500
+          },
+          "class_counts": {
+            "World": 3750,
+            "Sports": 1250
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 2500
+            },
+            "Q2": {
+              "Sports": 1250,
+              "World": 1250
+            }
+          }
+        },
+        "Q2_to_Q1_p060": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 60,
+          "q2_share_percent": 40,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 2000,
+            "Q1": 3000
+          },
+          "class_counts": {
+            "World": 4000,
+            "Sports": 1000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 3000
+            },
+            "Q2": {
+              "Sports": 1000,
+              "World": 1000
+            }
+          }
+        },
+        "Q2_to_Q1_p070": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 70,
+          "q2_share_percent": 30,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 3500,
+            "Q2": 1500
+          },
+          "class_counts": {
+            "World": 4250,
+            "Sports": 750
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 3500
+            },
+            "Q2": {
+              "Sports": 750,
+              "World": 750
+            }
+          }
+        },
+        "Q2_to_Q1_p080": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 80,
+          "q2_share_percent": 20,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4000,
+            "Q2": 1000
+          },
+          "class_counts": {
+            "World": 4500,
+            "Sports": 500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4000
+            },
+            "Q2": {
+              "Sports": 500,
+              "World": 500
+            }
+          }
+        },
+        "Q2_to_Q1_p090": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 90,
+          "q2_share_percent": 10,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4500,
+            "Q2": 500
+          },
+          "class_counts": {
+            "World": 4750,
+            "Sports": 250
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4500
+            },
+            "Q2": {
+              "Sports": 250,
+              "World": 250
+            }
+          }
+        },
+        "Q2_to_Q1_p095": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 95,
+          "q2_share_percent": 5,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4750,
+            "Q2": 250
+          },
+          "class_counts": {
+            "World": 4875,
+            "Sports": 125
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4750
+            },
+            "Q2": {
+              "Sports": 125,
+              "World": 125
+            }
+          }
+        },
+        "Q2_to_Q1_p098": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 98,
+          "q2_share_percent": 2,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4900,
+            "Q2": 100
+          },
+          "class_counts": {
+            "World": 4950,
+            "Sports": 50
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4900
+            },
+            "Q2": {
+              "Sports": 50,
+              "World": 50
+            }
+          }
+        },
+        "Q2_to_Q1_p099": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 99,
+          "q2_share_percent": 1,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4950,
+            "Q2": 50
+          },
+          "class_counts": {
+            "World": 4975,
+            "Sports": 25
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4950
+            },
+            "Q2": {
+              "Sports": 25,
+              "World": 25
+            }
+          }
+        },
+        "Q1": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 100,
+          "q2_share_percent": 0,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 5000
+          },
+          "class_counts": {
+            "World": 5000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 5000
+            },
+            "Q2": {
+              "Sports": 0,
+              "World": 0
+            }
+          }
+        },
+        "Q2_to_Q3_p001": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 1,
+          "q2_share_percent": 99,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4950,
+            "Q3": 50
+          },
+          "class_counts": {
+            "Sports": 2488,
+            "World": 2488,
+            "Sci/Tech": 12,
+            "Business": 12
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2475,
+              "World": 2475
+            },
+            "Q3": {
+              "Business": 12,
+              "Sci/Tech": 12,
+              "Sports": 13,
+              "World": 13
+            }
+          }
+        },
+        "Q2_to_Q3_p002": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 2,
+          "q2_share_percent": 98,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4900,
+            "Q3": 100
+          },
+          "class_counts": {
+            "Sports": 2475,
+            "World": 2475,
+            "Sci/Tech": 25,
+            "Business": 25
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2450,
+              "World": 2450
+            },
+            "Q3": {
+              "Business": 25,
+              "Sci/Tech": 25,
+              "Sports": 25,
+              "World": 25
+            }
+          }
+        },
+        "Q2_to_Q3_p005": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 5,
+          "q2_share_percent": 95,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4750,
+            "Q3": 250
+          },
+          "class_counts": {
+            "Sports": 2438,
+            "World": 2438,
+            "Sci/Tech": 62,
+            "Business": 62
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2375,
+              "World": 2375
+            },
+            "Q3": {
+              "Business": 62,
+              "Sci/Tech": 62,
+              "Sports": 63,
+              "World": 63
+            }
+          }
+        },
+        "Q2_to_Q3_p010": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 10,
+          "q2_share_percent": 90,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4500,
+            "Q3": 500
+          },
+          "class_counts": {
+            "World": 2375,
+            "Sports": 2375,
+            "Business": 125,
+            "Sci/Tech": 125
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2250,
+              "World": 2250
+            },
+            "Q3": {
+              "Business": 125,
+              "Sci/Tech": 125,
+              "Sports": 125,
+              "World": 125
+            }
+          }
+        },
+        "Q2_to_Q3_p020": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 20,
+          "q2_share_percent": 80,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4000,
+            "Q3": 1000
+          },
+          "class_counts": {
+            "Sports": 2250,
+            "World": 2250,
+            "Sci/Tech": 250,
+            "Business": 250
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2000,
+              "World": 2000
+            },
+            "Q3": {
+              "Business": 250,
+              "Sci/Tech": 250,
+              "Sports": 250,
+              "World": 250
+            }
+          }
+        },
+        "Q2_to_Q3_p030": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 30,
+          "q2_share_percent": 70,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3500,
+            "Q3": 1500
+          },
+          "class_counts": {
+            "Sports": 2125,
+            "World": 2125,
+            "Business": 375,
+            "Sci/Tech": 375
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1750,
+              "World": 1750
+            },
+            "Q3": {
+              "Business": 375,
+              "Sci/Tech": 375,
+              "Sports": 375,
+              "World": 375
+            }
+          }
+        },
+        "Q2_to_Q3_p040": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 40,
+          "q2_share_percent": 60,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3000,
+            "Q3": 2000
+          },
+          "class_counts": {
+            "Sports": 2000,
+            "World": 2000,
+            "Business": 500,
+            "Sci/Tech": 500
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1500,
+              "World": 1500
+            },
+            "Q3": {
+              "Business": 500,
+              "Sci/Tech": 500,
+              "Sports": 500,
+              "World": 500
+            }
+          }
+        },
+        "Q2_to_Q3_p050": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 50,
+          "q2_share_percent": 50,
+          "boundary_distance_percent": 50,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 2500,
+            "Q3": 2500
+          },
+          "class_counts": {
+            "Sports": 1875,
+            "World": 1875,
+            "Sci/Tech": 625,
+            "Business": 625
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1250,
+              "World": 1250
+            },
+            "Q3": {
+              "Business": 625,
+              "Sci/Tech": 625,
+              "Sports": 625,
+              "World": 625
+            }
+          }
+        },
+        "Q2_to_Q3_p060": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 60,
+          "q2_share_percent": 40,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 2000,
+            "Q3": 3000
+          },
+          "class_counts": {
+            "Sports": 1750,
+            "Business": 750,
+            "World": 1750,
+            "Sci/Tech": 750
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1000,
+              "World": 1000
+            },
+            "Q3": {
+              "Business": 750,
+              "Sci/Tech": 750,
+              "Sports": 750,
+              "World": 750
+            }
+          }
+        },
+        "Q2_to_Q3_p070": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 70,
+          "q2_share_percent": 30,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 1500,
+            "Q3": 3500
+          },
+          "class_counts": {
+            "World": 1625,
+            "Business": 875,
+            "Sports": 1625,
+            "Sci/Tech": 875
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 750,
+              "World": 750
+            },
+            "Q3": {
+              "Business": 875,
+              "Sci/Tech": 875,
+              "Sports": 875,
+              "World": 875
+            }
+          }
+        },
+        "Q2_to_Q3_p080": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 80,
+          "q2_share_percent": 20,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 1000,
+            "Q3": 4000
+          },
+          "class_counts": {
+            "World": 1500,
+            "Business": 1000,
+            "Sci/Tech": 1000,
+            "Sports": 1500
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 500,
+              "World": 500
+            },
+            "Q3": {
+              "Business": 1000,
+              "Sci/Tech": 1000,
+              "Sports": 1000,
+              "World": 1000
+            }
+          }
+        },
+        "Q2_to_Q3_p090": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 90,
+          "q2_share_percent": 10,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4500,
+            "Q2": 500
+          },
+          "class_counts": {
+            "Sports": 1375,
+            "Sci/Tech": 1125,
+            "Business": 1125,
+            "World": 1375
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 250,
+              "World": 250
+            },
+            "Q3": {
+              "Business": 1125,
+              "Sci/Tech": 1125,
+              "Sports": 1125,
+              "World": 1125
+            }
+          }
+        },
+        "Q2_to_Q3_p095": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 95,
+          "q2_share_percent": 5,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4750,
+            "Q2": 250
+          },
+          "class_counts": {
+            "Business": 1187,
+            "Sci/Tech": 1187,
+            "Sports": 1313,
+            "World": 1313
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 125,
+              "World": 125
+            },
+            "Q3": {
+              "Business": 1187,
+              "Sci/Tech": 1187,
+              "Sports": 1188,
+              "World": 1188
+            }
+          }
+        },
+        "Q2_to_Q3_p098": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 98,
+          "q2_share_percent": 2,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4900,
+            "Q2": 100
+          },
+          "class_counts": {
+            "Business": 1225,
+            "Sports": 1275,
+            "World": 1275,
+            "Sci/Tech": 1225
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 50,
+              "World": 50
+            },
+            "Q3": {
+              "Business": 1225,
+              "Sci/Tech": 1225,
+              "Sports": 1225,
+              "World": 1225
+            }
+          }
+        },
+        "Q2_to_Q3_p099": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 99,
+          "q2_share_percent": 1,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4950,
+            "Q2": 50
+          },
+          "class_counts": {
+            "World": 1263,
+            "Sci/Tech": 1237,
+            "Sports": 1263,
+            "Business": 1237
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 25,
+              "World": 25
+            },
+            "Q3": {
+              "Business": 1237,
+              "Sci/Tech": 1237,
+              "Sports": 1238,
+              "World": 1238
+            }
+          }
+        },
+        "Q3": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 100,
+          "q2_share_percent": 0,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 5000
+          },
+          "class_counts": {
+            "Sports": 1250,
+            "World": 1250,
+            "Business": 1250,
+            "Sci/Tech": 1250
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 0,
+              "World": 0
+            },
+            "Q3": {
+              "Business": 1250,
+              "Sci/Tech": 1250,
+              "Sports": 1250,
+              "World": 1250
+            }
+          }
+        }
+      },
+      "source_hash": "0fe9dcda7a85b52e4d46903846e9e8fd3b909eb240b3665d8786a15325b681c0"
+    },
+    {
+      "method": {
+        "quantile_convention": "empirical_bin_average_v1",
+        "gp_normalization": "none",
+        "gp_sample_centering": false,
+        "L": 1024,
+        "K": 1024,
+        "M": 64,
+        "lengthscale": 0.1,
+        "theta_seeds": [
+          0,
+          1,
+          2
+        ],
+        "gp_seeds": [
+          0,
+          1,
+          2
+        ]
+      },
+      "n": 5000,
+      "horizon": 1024,
+      "dimension": 1280,
+      "model_revision": "32b71b12589c2f8d625668d2335a01cac3249519",
+      "source_manifest_sha256": "2864f7367bd7e350c5d6008f32849534fdb0b49a45f065627c3f78fd3e2f85cb",
+      "interpolation_manifest_sha256": "dd2c326a93811af4451d35caa6533b648aa37517e96bf3aadafe969a4b787939",
+      "original_score_sha256": "49ead6737b6a64982d04a67352e1b4339489ae2cfef5a1876a1feb5dc50333fd",
+      "arms": {
+        "Q2": {
+          "path": "shared_Q2_endpoint",
+          "target_share_percent": 0,
+          "q2_share_percent": 100,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 5000
+          },
+          "class_counts": {
+            "Sports": 2500,
+            "World": 2500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 0
+            },
+            "Q2": {
+              "Sports": 2500,
+              "World": 2500
+            }
+          }
+        },
+        "Q2_to_Q1_p001": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 1,
+          "q2_share_percent": 99,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4950,
+            "Q1": 50
+          },
+          "class_counts": {
+            "Sports": 2475,
+            "World": 2525
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 50
+            },
+            "Q2": {
+              "Sports": 2475,
+              "World": 2475
+            }
+          }
+        },
+        "Q2_to_Q1_p002": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 2,
+          "q2_share_percent": 98,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4900,
+            "Q1": 100
+          },
+          "class_counts": {
+            "World": 2550,
+            "Sports": 2450
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 100
+            },
+            "Q2": {
+              "Sports": 2450,
+              "World": 2450
+            }
+          }
+        },
+        "Q2_to_Q1_p005": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 5,
+          "q2_share_percent": 95,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4750,
+            "Q1": 250
+          },
+          "class_counts": {
+            "World": 2625,
+            "Sports": 2375
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 250
+            },
+            "Q2": {
+              "Sports": 2375,
+              "World": 2375
+            }
+          }
+        },
+        "Q2_to_Q1_p010": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 10,
+          "q2_share_percent": 90,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4500,
+            "Q1": 500
+          },
+          "class_counts": {
+            "World": 2750,
+            "Sports": 2250
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 500
+            },
+            "Q2": {
+              "Sports": 2250,
+              "World": 2250
+            }
+          }
+        },
+        "Q2_to_Q1_p020": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 20,
+          "q2_share_percent": 80,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 1000,
+            "Q2": 4000
+          },
+          "class_counts": {
+            "World": 3000,
+            "Sports": 2000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 1000
+            },
+            "Q2": {
+              "Sports": 2000,
+              "World": 2000
+            }
+          }
+        },
+        "Q2_to_Q1_p030": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 30,
+          "q2_share_percent": 70,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3500,
+            "Q1": 1500
+          },
+          "class_counts": {
+            "World": 3250,
+            "Sports": 1750
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 1500
+            },
+            "Q2": {
+              "Sports": 1750,
+              "World": 1750
+            }
+          }
+        },
+        "Q2_to_Q1_p040": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 40,
+          "q2_share_percent": 60,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3000,
+            "Q1": 2000
+          },
+          "class_counts": {
+            "Sports": 1500,
+            "World": 3500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 2000
+            },
+            "Q2": {
+              "Sports": 1500,
+              "World": 1500
+            }
+          }
+        },
+        "Q2_to_Q1_p050": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 50,
+          "q2_share_percent": 50,
+          "boundary_distance_percent": 50,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 2500,
+            "Q1": 2500
+          },
+          "class_counts": {
+            "Sports": 1250,
+            "World": 3750
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 2500
+            },
+            "Q2": {
+              "Sports": 1250,
+              "World": 1250
+            }
+          }
+        },
+        "Q2_to_Q1_p060": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 60,
+          "q2_share_percent": 40,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 3000,
+            "Q2": 2000
+          },
+          "class_counts": {
+            "World": 4000,
+            "Sports": 1000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 3000
+            },
+            "Q2": {
+              "Sports": 1000,
+              "World": 1000
+            }
+          }
+        },
+        "Q2_to_Q1_p070": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 70,
+          "q2_share_percent": 30,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 3500,
+            "Q2": 1500
+          },
+          "class_counts": {
+            "World": 4250,
+            "Sports": 750
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 3500
+            },
+            "Q2": {
+              "Sports": 750,
+              "World": 750
+            }
+          }
+        },
+        "Q2_to_Q1_p080": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 80,
+          "q2_share_percent": 20,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4000,
+            "Q2": 1000
+          },
+          "class_counts": {
+            "World": 4500,
+            "Sports": 500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4000
+            },
+            "Q2": {
+              "Sports": 500,
+              "World": 500
+            }
+          }
+        },
+        "Q2_to_Q1_p090": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 90,
+          "q2_share_percent": 10,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 500,
+            "Q1": 4500
+          },
+          "class_counts": {
+            "Sports": 250,
+            "World": 4750
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4500
+            },
+            "Q2": {
+              "Sports": 250,
+              "World": 250
+            }
+          }
+        },
+        "Q2_to_Q1_p095": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 95,
+          "q2_share_percent": 5,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4750,
+            "Q2": 250
+          },
+          "class_counts": {
+            "World": 4875,
+            "Sports": 125
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4750
+            },
+            "Q2": {
+              "Sports": 125,
+              "World": 125
+            }
+          }
+        },
+        "Q2_to_Q1_p098": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 98,
+          "q2_share_percent": 2,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4900,
+            "Q2": 100
+          },
+          "class_counts": {
+            "World": 4950,
+            "Sports": 50
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4900
+            },
+            "Q2": {
+              "Sports": 50,
+              "World": 50
+            }
+          }
+        },
+        "Q2_to_Q1_p099": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 99,
+          "q2_share_percent": 1,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4950,
+            "Q2": 50
+          },
+          "class_counts": {
+            "World": 4975,
+            "Sports": 25
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4950
+            },
+            "Q2": {
+              "Sports": 25,
+              "World": 25
+            }
+          }
+        },
+        "Q1": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 100,
+          "q2_share_percent": 0,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 5000
+          },
+          "class_counts": {
+            "World": 5000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 5000
+            },
+            "Q2": {
+              "Sports": 0,
+              "World": 0
+            }
+          }
+        },
+        "Q2_to_Q3_p001": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 1,
+          "q2_share_percent": 99,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4950,
+            "Q3": 50
+          },
+          "class_counts": {
+            "World": 2487,
+            "Sports": 2488,
+            "Business": 13,
+            "Sci/Tech": 12
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2475,
+              "World": 2475
+            },
+            "Q3": {
+              "Business": 13,
+              "Sci/Tech": 12,
+              "Sports": 13,
+              "World": 12
+            }
+          }
+        },
+        "Q2_to_Q3_p002": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 2,
+          "q2_share_percent": 98,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4900,
+            "Q3": 100
+          },
+          "class_counts": {
+            "World": 2475,
+            "Sports": 2475,
+            "Business": 25,
+            "Sci/Tech": 25
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2450,
+              "World": 2450
+            },
+            "Q3": {
+              "Business": 25,
+              "Sci/Tech": 25,
+              "Sports": 25,
+              "World": 25
+            }
+          }
+        },
+        "Q2_to_Q3_p005": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 5,
+          "q2_share_percent": 95,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4750,
+            "Q3": 250
+          },
+          "class_counts": {
+            "World": 2437,
+            "Sports": 2438,
+            "Sci/Tech": 62,
+            "Business": 63
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2375,
+              "World": 2375
+            },
+            "Q3": {
+              "Business": 63,
+              "Sci/Tech": 62,
+              "Sports": 63,
+              "World": 62
+            }
+          }
+        },
+        "Q2_to_Q3_p010": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 10,
+          "q2_share_percent": 90,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4500,
+            "Q3": 500
+          },
+          "class_counts": {
+            "Sports": 2375,
+            "World": 2375,
+            "Business": 125,
+            "Sci/Tech": 125
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2250,
+              "World": 2250
+            },
+            "Q3": {
+              "Business": 125,
+              "Sci/Tech": 125,
+              "Sports": 125,
+              "World": 125
+            }
+          }
+        },
+        "Q2_to_Q3_p020": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 20,
+          "q2_share_percent": 80,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4000,
+            "Q3": 1000
+          },
+          "class_counts": {
+            "World": 2250,
+            "Sci/Tech": 250,
+            "Business": 250,
+            "Sports": 2250
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2000,
+              "World": 2000
+            },
+            "Q3": {
+              "Business": 250,
+              "Sci/Tech": 250,
+              "Sports": 250,
+              "World": 250
+            }
+          }
+        },
+        "Q2_to_Q3_p030": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 30,
+          "q2_share_percent": 70,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3500,
+            "Q3": 1500
+          },
+          "class_counts": {
+            "Sports": 2125,
+            "World": 2125,
+            "Sci/Tech": 375,
+            "Business": 375
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1750,
+              "World": 1750
+            },
+            "Q3": {
+              "Business": 375,
+              "Sci/Tech": 375,
+              "Sports": 375,
+              "World": 375
+            }
+          }
+        },
+        "Q2_to_Q3_p040": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 40,
+          "q2_share_percent": 60,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3000,
+            "Q3": 2000
+          },
+          "class_counts": {
+            "World": 2000,
+            "Sci/Tech": 500,
+            "Sports": 2000,
+            "Business": 500
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1500,
+              "World": 1500
+            },
+            "Q3": {
+              "Business": 500,
+              "Sci/Tech": 500,
+              "Sports": 500,
+              "World": 500
+            }
+          }
+        },
+        "Q2_to_Q3_p050": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 50,
+          "q2_share_percent": 50,
+          "boundary_distance_percent": 50,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 2500,
+            "Q2": 2500
+          },
+          "class_counts": {
+            "Sci/Tech": 625,
+            "Sports": 1875,
+            "World": 1875,
+            "Business": 625
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1250,
+              "World": 1250
+            },
+            "Q3": {
+              "Business": 625,
+              "Sci/Tech": 625,
+              "Sports": 625,
+              "World": 625
+            }
+          }
+        },
+        "Q2_to_Q3_p060": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 60,
+          "q2_share_percent": 40,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 2000,
+            "Q3": 3000
+          },
+          "class_counts": {
+            "World": 1750,
+            "Sci/Tech": 750,
+            "Sports": 1750,
+            "Business": 750
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1000,
+              "World": 1000
+            },
+            "Q3": {
+              "Business": 750,
+              "Sci/Tech": 750,
+              "Sports": 750,
+              "World": 750
+            }
+          }
+        },
+        "Q2_to_Q3_p070": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 70,
+          "q2_share_percent": 30,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 3500,
+            "Q2": 1500
+          },
+          "class_counts": {
+            "Sports": 1625,
+            "World": 1625,
+            "Sci/Tech": 875,
+            "Business": 875
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 750,
+              "World": 750
+            },
+            "Q3": {
+              "Business": 875,
+              "Sci/Tech": 875,
+              "Sports": 875,
+              "World": 875
+            }
+          }
+        },
+        "Q2_to_Q3_p080": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 80,
+          "q2_share_percent": 20,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4000,
+            "Q2": 1000
+          },
+          "class_counts": {
+            "Sci/Tech": 1000,
+            "World": 1500,
+            "Business": 1000,
+            "Sports": 1500
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 500,
+              "World": 500
+            },
+            "Q3": {
+              "Business": 1000,
+              "Sci/Tech": 1000,
+              "Sports": 1000,
+              "World": 1000
+            }
+          }
+        },
+        "Q2_to_Q3_p090": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 90,
+          "q2_share_percent": 10,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 500,
+            "Q3": 4500
+          },
+          "class_counts": {
+            "Sports": 1375,
+            "Business": 1125,
+            "World": 1375,
+            "Sci/Tech": 1125
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 250,
+              "World": 250
+            },
+            "Q3": {
+              "Business": 1125,
+              "Sci/Tech": 1125,
+              "Sports": 1125,
+              "World": 1125
+            }
+          }
+        },
+        "Q2_to_Q3_p095": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 95,
+          "q2_share_percent": 5,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4750,
+            "Q2": 250
+          },
+          "class_counts": {
+            "World": 1312,
+            "Business": 1188,
+            "Sci/Tech": 1187,
+            "Sports": 1313
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 125,
+              "World": 125
+            },
+            "Q3": {
+              "Business": 1188,
+              "Sci/Tech": 1187,
+              "Sports": 1188,
+              "World": 1187
+            }
+          }
+        },
+        "Q2_to_Q3_p098": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 98,
+          "q2_share_percent": 2,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4900,
+            "Q2": 100
+          },
+          "class_counts": {
+            "Sports": 1275,
+            "World": 1275,
+            "Sci/Tech": 1225,
+            "Business": 1225
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 50,
+              "World": 50
+            },
+            "Q3": {
+              "Business": 1225,
+              "Sci/Tech": 1225,
+              "Sports": 1225,
+              "World": 1225
+            }
+          }
+        },
+        "Q2_to_Q3_p099": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 99,
+          "q2_share_percent": 1,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4950,
+            "Q2": 50
+          },
+          "class_counts": {
+            "Sci/Tech": 1237,
+            "World": 1262,
+            "Business": 1238,
+            "Sports": 1263
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 25,
+              "World": 25
+            },
+            "Q3": {
+              "Business": 1238,
+              "Sci/Tech": 1237,
+              "Sports": 1238,
+              "World": 1237
+            }
+          }
+        },
+        "Q3": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 100,
+          "q2_share_percent": 0,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 5000
+          },
+          "class_counts": {
+            "Sci/Tech": 1250,
+            "Sports": 1250,
+            "World": 1250,
+            "Business": 1250
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 0,
+              "World": 0
+            },
+            "Q3": {
+              "Business": 1250,
+              "Sci/Tech": 1250,
+              "Sports": 1250,
+              "World": 1250
+            }
+          }
+        }
+      },
+      "source_hash": "0fe9dcda7a85b52e4d46903846e9e8fd3b909eb240b3665d8786a15325b681c0"
+    },
+    {
+      "method": {
+        "quantile_convention": "empirical_bin_average_v1",
+        "gp_normalization": "none",
+        "gp_sample_centering": false,
+        "L": 1024,
+        "K": 1024,
+        "M": 64,
+        "lengthscale": 0.1,
+        "theta_seeds": [
+          0,
+          1,
+          2
+        ],
+        "gp_seeds": [
+          0,
+          1,
+          2
+        ]
+      },
+      "n": 5000,
+      "horizon": 1024,
+      "dimension": 1280,
+      "model_revision": "32b71b12589c2f8d625668d2335a01cac3249519",
+      "source_manifest_sha256": "38a30f83707e0e121ebbc22afe20173c99c9d598bae2e8c26165a14c0e231d31",
+      "interpolation_manifest_sha256": "2961bcbde1de7acdbac3c83882eab970d0803056d151a0d85b30b5cabd2b7f37",
+      "original_score_sha256": "e189b778abef0a388a329beb69479f29de9189cf06d7f5f6ad5e500758567ce0",
+      "arms": {
+        "Q2": {
+          "path": "shared_Q2_endpoint",
+          "target_share_percent": 0,
+          "q2_share_percent": 100,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 5000
+          },
+          "class_counts": {
+            "Sports": 2500,
+            "World": 2500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 0
+            },
+            "Q2": {
+              "Sports": 2500,
+              "World": 2500
+            }
+          }
+        },
+        "Q2_to_Q1_p001": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 1,
+          "q2_share_percent": 99,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4950,
+            "Q1": 50
+          },
+          "class_counts": {
+            "World": 2525,
+            "Sports": 2475
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 50
+            },
+            "Q2": {
+              "Sports": 2475,
+              "World": 2475
+            }
+          }
+        },
+        "Q2_to_Q1_p002": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 2,
+          "q2_share_percent": 98,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4900,
+            "Q1": 100
+          },
+          "class_counts": {
+            "World": 2550,
+            "Sports": 2450
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 100
+            },
+            "Q2": {
+              "Sports": 2450,
+              "World": 2450
+            }
+          }
+        },
+        "Q2_to_Q1_p005": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 5,
+          "q2_share_percent": 95,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4750,
+            "Q1": 250
+          },
+          "class_counts": {
+            "Sports": 2375,
+            "World": 2625
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 250
+            },
+            "Q2": {
+              "Sports": 2375,
+              "World": 2375
+            }
+          }
+        },
+        "Q2_to_Q1_p010": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 10,
+          "q2_share_percent": 90,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4500,
+            "Q1": 500
+          },
+          "class_counts": {
+            "Sports": 2250,
+            "World": 2750
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 500
+            },
+            "Q2": {
+              "Sports": 2250,
+              "World": 2250
+            }
+          }
+        },
+        "Q2_to_Q1_p020": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 20,
+          "q2_share_percent": 80,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4000,
+            "Q1": 1000
+          },
+          "class_counts": {
+            "Sports": 2000,
+            "World": 3000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 1000
+            },
+            "Q2": {
+              "Sports": 2000,
+              "World": 2000
+            }
+          }
+        },
+        "Q2_to_Q1_p030": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 30,
+          "q2_share_percent": 70,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3500,
+            "Q1": 1500
+          },
+          "class_counts": {
+            "World": 3250,
+            "Sports": 1750
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 1500
+            },
+            "Q2": {
+              "Sports": 1750,
+              "World": 1750
+            }
+          }
+        },
+        "Q2_to_Q1_p040": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 40,
+          "q2_share_percent": 60,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3000,
+            "Q1": 2000
+          },
+          "class_counts": {
+            "Sports": 1500,
+            "World": 3500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 2000
+            },
+            "Q2": {
+              "Sports": 1500,
+              "World": 1500
+            }
+          }
+        },
+        "Q2_to_Q1_p050": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 50,
+          "q2_share_percent": 50,
+          "boundary_distance_percent": 50,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 2500,
+            "Q1": 2500
+          },
+          "class_counts": {
+            "World": 3750,
+            "Sports": 1250
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 2500
+            },
+            "Q2": {
+              "Sports": 1250,
+              "World": 1250
+            }
+          }
+        },
+        "Q2_to_Q1_p060": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 60,
+          "q2_share_percent": 40,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 2000,
+            "Q1": 3000
+          },
+          "class_counts": {
+            "World": 4000,
+            "Sports": 1000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 3000
+            },
+            "Q2": {
+              "Sports": 1000,
+              "World": 1000
+            }
+          }
+        },
+        "Q2_to_Q1_p070": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 70,
+          "q2_share_percent": 30,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 3500,
+            "Q2": 1500
+          },
+          "class_counts": {
+            "World": 4250,
+            "Sports": 750
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 3500
+            },
+            "Q2": {
+              "Sports": 750,
+              "World": 750
+            }
+          }
+        },
+        "Q2_to_Q1_p080": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 80,
+          "q2_share_percent": 20,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4000,
+            "Q2": 1000
+          },
+          "class_counts": {
+            "World": 4500,
+            "Sports": 500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4000
+            },
+            "Q2": {
+              "Sports": 500,
+              "World": 500
+            }
+          }
+        },
+        "Q2_to_Q1_p090": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 90,
+          "q2_share_percent": 10,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 500,
+            "Q1": 4500
+          },
+          "class_counts": {
+            "World": 4750,
+            "Sports": 250
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4500
+            },
+            "Q2": {
+              "Sports": 250,
+              "World": 250
+            }
+          }
+        },
+        "Q2_to_Q1_p095": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 95,
+          "q2_share_percent": 5,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4750,
+            "Q2": 250
+          },
+          "class_counts": {
+            "World": 4875,
+            "Sports": 125
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4750
+            },
+            "Q2": {
+              "Sports": 125,
+              "World": 125
+            }
+          }
+        },
+        "Q2_to_Q1_p098": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 98,
+          "q2_share_percent": 2,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4900,
+            "Q2": 100
+          },
+          "class_counts": {
+            "World": 4950,
+            "Sports": 50
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4900
+            },
+            "Q2": {
+              "Sports": 50,
+              "World": 50
+            }
+          }
+        },
+        "Q2_to_Q1_p099": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 99,
+          "q2_share_percent": 1,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4950,
+            "Q2": 50
+          },
+          "class_counts": {
+            "World": 4975,
+            "Sports": 25
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4950
+            },
+            "Q2": {
+              "Sports": 25,
+              "World": 25
+            }
+          }
+        },
+        "Q1": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 100,
+          "q2_share_percent": 0,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 5000
+          },
+          "class_counts": {
+            "World": 5000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 5000
+            },
+            "Q2": {
+              "Sports": 0,
+              "World": 0
+            }
+          }
+        },
+        "Q2_to_Q3_p001": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 1,
+          "q2_share_percent": 99,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4950,
+            "Q3": 50
+          },
+          "class_counts": {
+            "Sports": 2487,
+            "World": 2487,
+            "Business": 13,
+            "Sci/Tech": 13
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2475,
+              "World": 2475
+            },
+            "Q3": {
+              "Business": 13,
+              "Sci/Tech": 13,
+              "Sports": 12,
+              "World": 12
+            }
+          }
+        },
+        "Q2_to_Q3_p002": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 2,
+          "q2_share_percent": 98,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4900,
+            "Q3": 100
+          },
+          "class_counts": {
+            "Sports": 2475,
+            "World": 2475,
+            "Business": 25,
+            "Sci/Tech": 25
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2450,
+              "World": 2450
+            },
+            "Q3": {
+              "Business": 25,
+              "Sci/Tech": 25,
+              "Sports": 25,
+              "World": 25
+            }
+          }
+        },
+        "Q2_to_Q3_p005": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 5,
+          "q2_share_percent": 95,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4750,
+            "Q3": 250
+          },
+          "class_counts": {
+            "Sports": 2437,
+            "World": 2437,
+            "Sci/Tech": 63,
+            "Business": 63
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2375,
+              "World": 2375
+            },
+            "Q3": {
+              "Business": 63,
+              "Sci/Tech": 63,
+              "Sports": 62,
+              "World": 62
+            }
+          }
+        },
+        "Q2_to_Q3_p010": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 10,
+          "q2_share_percent": 90,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4500,
+            "Q3": 500
+          },
+          "class_counts": {
+            "World": 2375,
+            "Sports": 2375,
+            "Business": 125,
+            "Sci/Tech": 125
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2250,
+              "World": 2250
+            },
+            "Q3": {
+              "Business": 125,
+              "Sci/Tech": 125,
+              "Sports": 125,
+              "World": 125
+            }
+          }
+        },
+        "Q2_to_Q3_p020": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 20,
+          "q2_share_percent": 80,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 1000,
+            "Q2": 4000
+          },
+          "class_counts": {
+            "Business": 250,
+            "World": 2250,
+            "Sports": 2250,
+            "Sci/Tech": 250
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2000,
+              "World": 2000
+            },
+            "Q3": {
+              "Business": 250,
+              "Sci/Tech": 250,
+              "Sports": 250,
+              "World": 250
+            }
+          }
+        },
+        "Q2_to_Q3_p030": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 30,
+          "q2_share_percent": 70,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3500,
+            "Q3": 1500
+          },
+          "class_counts": {
+            "Sports": 2125,
+            "World": 2125,
+            "Sci/Tech": 375,
+            "Business": 375
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1750,
+              "World": 1750
+            },
+            "Q3": {
+              "Business": 375,
+              "Sci/Tech": 375,
+              "Sports": 375,
+              "World": 375
+            }
+          }
+        },
+        "Q2_to_Q3_p040": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 40,
+          "q2_share_percent": 60,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3000,
+            "Q3": 2000
+          },
+          "class_counts": {
+            "World": 2000,
+            "Sports": 2000,
+            "Business": 500,
+            "Sci/Tech": 500
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1500,
+              "World": 1500
+            },
+            "Q3": {
+              "Business": 500,
+              "Sci/Tech": 500,
+              "Sports": 500,
+              "World": 500
+            }
+          }
+        },
+        "Q2_to_Q3_p050": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 50,
+          "q2_share_percent": 50,
+          "boundary_distance_percent": 50,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 2500,
+            "Q3": 2500
+          },
+          "class_counts": {
+            "World": 1875,
+            "Sci/Tech": 625,
+            "Sports": 1875,
+            "Business": 625
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1250,
+              "World": 1250
+            },
+            "Q3": {
+              "Business": 625,
+              "Sci/Tech": 625,
+              "Sports": 625,
+              "World": 625
+            }
+          }
+        },
+        "Q2_to_Q3_p060": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 60,
+          "q2_share_percent": 40,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 3000,
+            "Q2": 2000
+          },
+          "class_counts": {
+            "Business": 750,
+            "World": 1750,
+            "Sports": 1750,
+            "Sci/Tech": 750
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1000,
+              "World": 1000
+            },
+            "Q3": {
+              "Business": 750,
+              "Sci/Tech": 750,
+              "Sports": 750,
+              "World": 750
+            }
+          }
+        },
+        "Q2_to_Q3_p070": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 70,
+          "q2_share_percent": 30,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 3500,
+            "Q2": 1500
+          },
+          "class_counts": {
+            "Sports": 1625,
+            "Business": 875,
+            "World": 1625,
+            "Sci/Tech": 875
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 750,
+              "World": 750
+            },
+            "Q3": {
+              "Business": 875,
+              "Sci/Tech": 875,
+              "Sports": 875,
+              "World": 875
+            }
+          }
+        },
+        "Q2_to_Q3_p080": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 80,
+          "q2_share_percent": 20,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4000,
+            "Q2": 1000
+          },
+          "class_counts": {
+            "Sports": 1500,
+            "Sci/Tech": 1000,
+            "World": 1500,
+            "Business": 1000
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 500,
+              "World": 500
+            },
+            "Q3": {
+              "Business": 1000,
+              "Sci/Tech": 1000,
+              "Sports": 1000,
+              "World": 1000
+            }
+          }
+        },
+        "Q2_to_Q3_p090": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 90,
+          "q2_share_percent": 10,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4500,
+            "Q2": 500
+          },
+          "class_counts": {
+            "Sci/Tech": 1125,
+            "Sports": 1375,
+            "Business": 1125,
+            "World": 1375
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 250,
+              "World": 250
+            },
+            "Q3": {
+              "Business": 1125,
+              "Sci/Tech": 1125,
+              "Sports": 1125,
+              "World": 1125
+            }
+          }
+        },
+        "Q2_to_Q3_p095": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 95,
+          "q2_share_percent": 5,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4750,
+            "Q2": 250
+          },
+          "class_counts": {
+            "Business": 1188,
+            "World": 1312,
+            "Sports": 1312,
+            "Sci/Tech": 1188
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 125,
+              "World": 125
+            },
+            "Q3": {
+              "Business": 1188,
+              "Sci/Tech": 1188,
+              "Sports": 1187,
+              "World": 1187
+            }
+          }
+        },
+        "Q2_to_Q3_p098": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 98,
+          "q2_share_percent": 2,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4900,
+            "Q2": 100
+          },
+          "class_counts": {
+            "Sci/Tech": 1225,
+            "Business": 1225,
+            "World": 1275,
+            "Sports": 1275
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 50,
+              "World": 50
+            },
+            "Q3": {
+              "Business": 1225,
+              "Sci/Tech": 1225,
+              "Sports": 1225,
+              "World": 1225
+            }
+          }
+        },
+        "Q2_to_Q3_p099": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 99,
+          "q2_share_percent": 1,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4950,
+            "Q2": 50
+          },
+          "class_counts": {
+            "Sci/Tech": 1238,
+            "Sports": 1262,
+            "World": 1262,
+            "Business": 1238
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 25,
+              "World": 25
+            },
+            "Q3": {
+              "Business": 1238,
+              "Sci/Tech": 1238,
+              "Sports": 1237,
+              "World": 1237
+            }
+          }
+        },
+        "Q3": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 100,
+          "q2_share_percent": 0,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 5000
+          },
+          "class_counts": {
+            "Sci/Tech": 1250,
+            "World": 1250,
+            "Business": 1250,
+            "Sports": 1250
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 0,
+              "World": 0
+            },
+            "Q3": {
+              "Business": 1250,
+              "Sci/Tech": 1250,
+              "Sports": 1250,
+              "World": 1250
+            }
+          }
+        }
+      },
+      "source_hash": "0fe9dcda7a85b52e4d46903846e9e8fd3b909eb240b3665d8786a15325b681c0"
+    },
+    {
+      "method": {
+        "quantile_convention": "empirical_bin_average_v1",
+        "gp_normalization": "none",
+        "gp_sample_centering": false,
+        "L": 1024,
+        "K": 1024,
+        "M": 64,
+        "lengthscale": 0.1,
+        "theta_seeds": [
+          0,
+          1,
+          2
+        ],
+        "gp_seeds": [
+          0,
+          1,
+          2
+        ]
+      },
+      "n": 5000,
+      "horizon": 1024,
+      "dimension": 1280,
+      "model_revision": "32b71b12589c2f8d625668d2335a01cac3249519",
+      "source_manifest_sha256": "352a7fe765625cbe5ff4c84d213a19454a1ee12118c3ef05279d4332ed63dad0",
+      "interpolation_manifest_sha256": "5c19291277913e2aa3ce5f8c5f0c412374db9282cd79a2bd2ff3b36c45b858f4",
+      "original_score_sha256": "fc764f4aa034050c2256ac276a713279840964e5fd80ca644cc24a452194ee6e",
+      "arms": {
+        "Q2": {
+          "path": "shared_Q2_endpoint",
+          "target_share_percent": 0,
+          "q2_share_percent": 100,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 5000
+          },
+          "class_counts": {
+            "Sports": 2500,
+            "World": 2500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 0
+            },
+            "Q2": {
+              "Sports": 2500,
+              "World": 2500
+            }
+          }
+        },
+        "Q2_to_Q1_p001": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 1,
+          "q2_share_percent": 99,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4950,
+            "Q1": 50
+          },
+          "class_counts": {
+            "World": 2525,
+            "Sports": 2475
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 50
+            },
+            "Q2": {
+              "Sports": 2475,
+              "World": 2475
+            }
+          }
+        },
+        "Q2_to_Q1_p002": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 2,
+          "q2_share_percent": 98,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4900,
+            "Q1": 100
+          },
+          "class_counts": {
+            "World": 2550,
+            "Sports": 2450
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 100
+            },
+            "Q2": {
+              "Sports": 2450,
+              "World": 2450
+            }
+          }
+        },
+        "Q2_to_Q1_p005": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 5,
+          "q2_share_percent": 95,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4750,
+            "Q1": 250
+          },
+          "class_counts": {
+            "World": 2625,
+            "Sports": 2375
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 250
+            },
+            "Q2": {
+              "Sports": 2375,
+              "World": 2375
+            }
+          }
+        },
+        "Q2_to_Q1_p010": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 10,
+          "q2_share_percent": 90,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4500,
+            "Q1": 500
+          },
+          "class_counts": {
+            "World": 2750,
+            "Sports": 2250
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 500
+            },
+            "Q2": {
+              "Sports": 2250,
+              "World": 2250
+            }
+          }
+        },
+        "Q2_to_Q1_p020": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 20,
+          "q2_share_percent": 80,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4000,
+            "Q1": 1000
+          },
+          "class_counts": {
+            "World": 3000,
+            "Sports": 2000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 1000
+            },
+            "Q2": {
+              "Sports": 2000,
+              "World": 2000
+            }
+          }
+        },
+        "Q2_to_Q1_p030": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 30,
+          "q2_share_percent": 70,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3500,
+            "Q1": 1500
+          },
+          "class_counts": {
+            "World": 3250,
+            "Sports": 1750
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 1500
+            },
+            "Q2": {
+              "Sports": 1750,
+              "World": 1750
+            }
+          }
+        },
+        "Q2_to_Q1_p040": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 40,
+          "q2_share_percent": 60,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3000,
+            "Q1": 2000
+          },
+          "class_counts": {
+            "World": 3500,
+            "Sports": 1500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 2000
+            },
+            "Q2": {
+              "Sports": 1500,
+              "World": 1500
+            }
+          }
+        },
+        "Q2_to_Q1_p050": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 50,
+          "q2_share_percent": 50,
+          "boundary_distance_percent": 50,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 2500,
+            "Q2": 2500
+          },
+          "class_counts": {
+            "World": 3750,
+            "Sports": 1250
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 2500
+            },
+            "Q2": {
+              "Sports": 1250,
+              "World": 1250
+            }
+          }
+        },
+        "Q2_to_Q1_p060": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 60,
+          "q2_share_percent": 40,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 3000,
+            "Q2": 2000
+          },
+          "class_counts": {
+            "World": 4000,
+            "Sports": 1000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 3000
+            },
+            "Q2": {
+              "Sports": 1000,
+              "World": 1000
+            }
+          }
+        },
+        "Q2_to_Q1_p070": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 70,
+          "q2_share_percent": 30,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 3500,
+            "Q2": 1500
+          },
+          "class_counts": {
+            "World": 4250,
+            "Sports": 750
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 3500
+            },
+            "Q2": {
+              "Sports": 750,
+              "World": 750
+            }
+          }
+        },
+        "Q2_to_Q1_p080": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 80,
+          "q2_share_percent": 20,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4000,
+            "Q2": 1000
+          },
+          "class_counts": {
+            "World": 4500,
+            "Sports": 500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4000
+            },
+            "Q2": {
+              "Sports": 500,
+              "World": 500
+            }
+          }
+        },
+        "Q2_to_Q1_p090": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 90,
+          "q2_share_percent": 10,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4500,
+            "Q2": 500
+          },
+          "class_counts": {
+            "World": 4750,
+            "Sports": 250
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4500
+            },
+            "Q2": {
+              "Sports": 250,
+              "World": 250
+            }
+          }
+        },
+        "Q2_to_Q1_p095": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 95,
+          "q2_share_percent": 5,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4750,
+            "Q2": 250
+          },
+          "class_counts": {
+            "World": 4875,
+            "Sports": 125
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4750
+            },
+            "Q2": {
+              "Sports": 125,
+              "World": 125
+            }
+          }
+        },
+        "Q2_to_Q1_p098": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 98,
+          "q2_share_percent": 2,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4900,
+            "Q2": 100
+          },
+          "class_counts": {
+            "World": 4950,
+            "Sports": 50
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4900
+            },
+            "Q2": {
+              "Sports": 50,
+              "World": 50
+            }
+          }
+        },
+        "Q2_to_Q1_p099": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 99,
+          "q2_share_percent": 1,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4950,
+            "Q2": 50
+          },
+          "class_counts": {
+            "World": 4975,
+            "Sports": 25
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4950
+            },
+            "Q2": {
+              "Sports": 25,
+              "World": 25
+            }
+          }
+        },
+        "Q1": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 100,
+          "q2_share_percent": 0,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 5000
+          },
+          "class_counts": {
+            "World": 5000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 5000
+            },
+            "Q2": {
+              "Sports": 0,
+              "World": 0
+            }
+          }
+        },
+        "Q2_to_Q3_p001": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 1,
+          "q2_share_percent": 99,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4950,
+            "Q3": 50
+          },
+          "class_counts": {
+            "World": 2488,
+            "Sports": 2487,
+            "Business": 12,
+            "Sci/Tech": 13
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2475,
+              "World": 2475
+            },
+            "Q3": {
+              "Business": 12,
+              "Sci/Tech": 13,
+              "Sports": 12,
+              "World": 13
+            }
+          }
+        },
+        "Q2_to_Q3_p002": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 2,
+          "q2_share_percent": 98,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4900,
+            "Q3": 100
+          },
+          "class_counts": {
+            "Sports": 2475,
+            "World": 2475,
+            "Business": 25,
+            "Sci/Tech": 25
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2450,
+              "World": 2450
+            },
+            "Q3": {
+              "Business": 25,
+              "Sci/Tech": 25,
+              "Sports": 25,
+              "World": 25
+            }
+          }
+        },
+        "Q2_to_Q3_p005": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 5,
+          "q2_share_percent": 95,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4750,
+            "Q3": 250
+          },
+          "class_counts": {
+            "Sports": 2437,
+            "World": 2438,
+            "Business": 62,
+            "Sci/Tech": 63
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2375,
+              "World": 2375
+            },
+            "Q3": {
+              "Business": 62,
+              "Sci/Tech": 63,
+              "Sports": 62,
+              "World": 63
+            }
+          }
+        },
+        "Q2_to_Q3_p010": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 10,
+          "q2_share_percent": 90,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4500,
+            "Q3": 500
+          },
+          "class_counts": {
+            "Sports": 2375,
+            "World": 2375,
+            "Business": 125,
+            "Sci/Tech": 125
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2250,
+              "World": 2250
+            },
+            "Q3": {
+              "Business": 125,
+              "Sci/Tech": 125,
+              "Sports": 125,
+              "World": 125
+            }
+          }
+        },
+        "Q2_to_Q3_p020": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 20,
+          "q2_share_percent": 80,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4000,
+            "Q3": 1000
+          },
+          "class_counts": {
+            "Sports": 2250,
+            "World": 2250,
+            "Business": 250,
+            "Sci/Tech": 250
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2000,
+              "World": 2000
+            },
+            "Q3": {
+              "Business": 250,
+              "Sci/Tech": 250,
+              "Sports": 250,
+              "World": 250
+            }
+          }
+        },
+        "Q2_to_Q3_p030": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 30,
+          "q2_share_percent": 70,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3500,
+            "Q3": 1500
+          },
+          "class_counts": {
+            "World": 2125,
+            "Business": 375,
+            "Sci/Tech": 375,
+            "Sports": 2125
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1750,
+              "World": 1750
+            },
+            "Q3": {
+              "Business": 375,
+              "Sci/Tech": 375,
+              "Sports": 375,
+              "World": 375
+            }
+          }
+        },
+        "Q2_to_Q3_p040": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 40,
+          "q2_share_percent": 60,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 2000,
+            "Q2": 3000
+          },
+          "class_counts": {
+            "World": 2000,
+            "Sports": 2000,
+            "Sci/Tech": 500,
+            "Business": 500
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1500,
+              "World": 1500
+            },
+            "Q3": {
+              "Business": 500,
+              "Sci/Tech": 500,
+              "Sports": 500,
+              "World": 500
+            }
+          }
+        },
+        "Q2_to_Q3_p050": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 50,
+          "q2_share_percent": 50,
+          "boundary_distance_percent": 50,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 2500,
+            "Q3": 2500
+          },
+          "class_counts": {
+            "World": 1875,
+            "Sports": 1875,
+            "Business": 625,
+            "Sci/Tech": 625
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1250,
+              "World": 1250
+            },
+            "Q3": {
+              "Business": 625,
+              "Sci/Tech": 625,
+              "Sports": 625,
+              "World": 625
+            }
+          }
+        },
+        "Q2_to_Q3_p060": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 60,
+          "q2_share_percent": 40,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 3000,
+            "Q2": 2000
+          },
+          "class_counts": {
+            "Sports": 1750,
+            "World": 1750,
+            "Business": 750,
+            "Sci/Tech": 750
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1000,
+              "World": 1000
+            },
+            "Q3": {
+              "Business": 750,
+              "Sci/Tech": 750,
+              "Sports": 750,
+              "World": 750
+            }
+          }
+        },
+        "Q2_to_Q3_p070": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 70,
+          "q2_share_percent": 30,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 1500,
+            "Q3": 3500
+          },
+          "class_counts": {
+            "World": 1625,
+            "Sci/Tech": 875,
+            "Business": 875,
+            "Sports": 1625
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 750,
+              "World": 750
+            },
+            "Q3": {
+              "Business": 875,
+              "Sci/Tech": 875,
+              "Sports": 875,
+              "World": 875
+            }
+          }
+        },
+        "Q2_to_Q3_p080": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 80,
+          "q2_share_percent": 20,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4000,
+            "Q2": 1000
+          },
+          "class_counts": {
+            "World": 1500,
+            "Sports": 1500,
+            "Business": 1000,
+            "Sci/Tech": 1000
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 500,
+              "World": 500
+            },
+            "Q3": {
+              "Business": 1000,
+              "Sci/Tech": 1000,
+              "Sports": 1000,
+              "World": 1000
+            }
+          }
+        },
+        "Q2_to_Q3_p090": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 90,
+          "q2_share_percent": 10,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4500,
+            "Q2": 500
+          },
+          "class_counts": {
+            "Sci/Tech": 1125,
+            "World": 1375,
+            "Business": 1125,
+            "Sports": 1375
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 250,
+              "World": 250
+            },
+            "Q3": {
+              "Business": 1125,
+              "Sci/Tech": 1125,
+              "Sports": 1125,
+              "World": 1125
+            }
+          }
+        },
+        "Q2_to_Q3_p095": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 95,
+          "q2_share_percent": 5,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4750,
+            "Q2": 250
+          },
+          "class_counts": {
+            "World": 1313,
+            "Sports": 1312,
+            "Business": 1187,
+            "Sci/Tech": 1188
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 125,
+              "World": 125
+            },
+            "Q3": {
+              "Business": 1187,
+              "Sci/Tech": 1188,
+              "Sports": 1187,
+              "World": 1188
+            }
+          }
+        },
+        "Q2_to_Q3_p098": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 98,
+          "q2_share_percent": 2,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4900,
+            "Q2": 100
+          },
+          "class_counts": {
+            "Sports": 1275,
+            "World": 1275,
+            "Business": 1225,
+            "Sci/Tech": 1225
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 50,
+              "World": 50
+            },
+            "Q3": {
+              "Business": 1225,
+              "Sci/Tech": 1225,
+              "Sports": 1225,
+              "World": 1225
+            }
+          }
+        },
+        "Q2_to_Q3_p099": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 99,
+          "q2_share_percent": 1,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4950,
+            "Q2": 50
+          },
+          "class_counts": {
+            "World": 1263,
+            "Business": 1237,
+            "Sci/Tech": 1238,
+            "Sports": 1262
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 25,
+              "World": 25
+            },
+            "Q3": {
+              "Business": 1237,
+              "Sci/Tech": 1238,
+              "Sports": 1237,
+              "World": 1238
+            }
+          }
+        },
+        "Q3": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 100,
+          "q2_share_percent": 0,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 5000
+          },
+          "class_counts": {
+            "World": 1250,
+            "Sports": 1250,
+            "Business": 1250,
+            "Sci/Tech": 1250
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 0,
+              "World": 0
+            },
+            "Q3": {
+              "Business": 1250,
+              "Sci/Tech": 1250,
+              "Sports": 1250,
+              "World": 1250
+            }
+          }
+        }
+      },
+      "source_hash": "0fe9dcda7a85b52e4d46903846e9e8fd3b909eb240b3665d8786a15325b681c0"
+    },
+    {
+      "method": {
+        "quantile_convention": "empirical_bin_average_v1",
+        "gp_normalization": "none",
+        "gp_sample_centering": false,
+        "L": 1024,
+        "K": 1024,
+        "M": 64,
+        "lengthscale": 0.1,
+        "theta_seeds": [
+          0,
+          1,
+          2
+        ],
+        "gp_seeds": [
+          0,
+          1,
+          2
+        ]
+      },
+      "n": 5000,
+      "horizon": 1024,
+      "dimension": 1280,
+      "model_revision": "32b71b12589c2f8d625668d2335a01cac3249519",
+      "source_manifest_sha256": "49c510099aeb18d6e8497fd0bc821ed098092cfd4c7a9b274aa0eea3dfc617d0",
+      "interpolation_manifest_sha256": "3391c61e562147676e6a6330392c27fc526354461c0fb55b56ff66725cfc6023",
+      "original_score_sha256": "47e2ef56807f677ff3dd757b1c728d7cc88471b123fe93d810031f526a02c2d0",
+      "arms": {
+        "Q2": {
+          "path": "shared_Q2_endpoint",
+          "target_share_percent": 0,
+          "q2_share_percent": 100,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 5000
+          },
+          "class_counts": {
+            "World": 2500,
+            "Sports": 2500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 0
+            },
+            "Q2": {
+              "Sports": 2500,
+              "World": 2500
+            }
+          }
+        },
+        "Q2_to_Q1_p001": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 1,
+          "q2_share_percent": 99,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4950,
+            "Q1": 50
+          },
+          "class_counts": {
+            "Sports": 2475,
+            "World": 2525
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 50
+            },
+            "Q2": {
+              "Sports": 2475,
+              "World": 2475
+            }
+          }
+        },
+        "Q2_to_Q1_p002": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 2,
+          "q2_share_percent": 98,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4900,
+            "Q1": 100
+          },
+          "class_counts": {
+            "World": 2550,
+            "Sports": 2450
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 100
+            },
+            "Q2": {
+              "Sports": 2450,
+              "World": 2450
+            }
+          }
+        },
+        "Q2_to_Q1_p005": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 5,
+          "q2_share_percent": 95,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4750,
+            "Q1": 250
+          },
+          "class_counts": {
+            "World": 2625,
+            "Sports": 2375
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 250
+            },
+            "Q2": {
+              "Sports": 2375,
+              "World": 2375
+            }
+          }
+        },
+        "Q2_to_Q1_p010": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 10,
+          "q2_share_percent": 90,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4500,
+            "Q1": 500
+          },
+          "class_counts": {
+            "World": 2750,
+            "Sports": 2250
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 500
+            },
+            "Q2": {
+              "Sports": 2250,
+              "World": 2250
+            }
+          }
+        },
+        "Q2_to_Q1_p020": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 20,
+          "q2_share_percent": 80,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4000,
+            "Q1": 1000
+          },
+          "class_counts": {
+            "Sports": 2000,
+            "World": 3000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 1000
+            },
+            "Q2": {
+              "Sports": 2000,
+              "World": 2000
+            }
+          }
+        },
+        "Q2_to_Q1_p030": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 30,
+          "q2_share_percent": 70,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3500,
+            "Q1": 1500
+          },
+          "class_counts": {
+            "World": 3250,
+            "Sports": 1750
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 1500
+            },
+            "Q2": {
+              "Sports": 1750,
+              "World": 1750
+            }
+          }
+        },
+        "Q2_to_Q1_p040": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 40,
+          "q2_share_percent": 60,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3000,
+            "Q1": 2000
+          },
+          "class_counts": {
+            "Sports": 1500,
+            "World": 3500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 2000
+            },
+            "Q2": {
+              "Sports": 1500,
+              "World": 1500
+            }
+          }
+        },
+        "Q2_to_Q1_p050": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 50,
+          "q2_share_percent": 50,
+          "boundary_distance_percent": 50,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 2500,
+            "Q1": 2500
+          },
+          "class_counts": {
+            "Sports": 1250,
+            "World": 3750
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 2500
+            },
+            "Q2": {
+              "Sports": 1250,
+              "World": 1250
+            }
+          }
+        },
+        "Q2_to_Q1_p060": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 60,
+          "q2_share_percent": 40,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 2000,
+            "Q1": 3000
+          },
+          "class_counts": {
+            "World": 4000,
+            "Sports": 1000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 3000
+            },
+            "Q2": {
+              "Sports": 1000,
+              "World": 1000
+            }
+          }
+        },
+        "Q2_to_Q1_p070": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 70,
+          "q2_share_percent": 30,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 1500,
+            "Q1": 3500
+          },
+          "class_counts": {
+            "World": 4250,
+            "Sports": 750
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 3500
+            },
+            "Q2": {
+              "Sports": 750,
+              "World": 750
+            }
+          }
+        },
+        "Q2_to_Q1_p080": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 80,
+          "q2_share_percent": 20,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4000,
+            "Q2": 1000
+          },
+          "class_counts": {
+            "World": 4500,
+            "Sports": 500
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4000
+            },
+            "Q2": {
+              "Sports": 500,
+              "World": 500
+            }
+          }
+        },
+        "Q2_to_Q1_p090": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 90,
+          "q2_share_percent": 10,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4500,
+            "Q2": 500
+          },
+          "class_counts": {
+            "World": 4750,
+            "Sports": 250
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4500
+            },
+            "Q2": {
+              "Sports": 250,
+              "World": 250
+            }
+          }
+        },
+        "Q2_to_Q1_p095": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 95,
+          "q2_share_percent": 5,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4750,
+            "Q2": 250
+          },
+          "class_counts": {
+            "World": 4875,
+            "Sports": 125
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4750
+            },
+            "Q2": {
+              "Sports": 125,
+              "World": 125
+            }
+          }
+        },
+        "Q2_to_Q1_p098": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 98,
+          "q2_share_percent": 2,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4900,
+            "Q2": 100
+          },
+          "class_counts": {
+            "World": 4950,
+            "Sports": 50
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4900
+            },
+            "Q2": {
+              "Sports": 50,
+              "World": 50
+            }
+          }
+        },
+        "Q2_to_Q1_p099": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 99,
+          "q2_share_percent": 1,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 4950,
+            "Q2": 50
+          },
+          "class_counts": {
+            "World": 4975,
+            "Sports": 25
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 4950
+            },
+            "Q2": {
+              "Sports": 25,
+              "World": 25
+            }
+          }
+        },
+        "Q1": {
+          "path": "Q2_to_Q1",
+          "target_share_percent": 100,
+          "q2_share_percent": 0,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q1": 5000
+          },
+          "class_counts": {
+            "World": 5000
+          },
+          "component_class_counts": {
+            "Q1": {
+              "World": 5000
+            },
+            "Q2": {
+              "Sports": 0,
+              "World": 0
+            }
+          }
+        },
+        "Q2_to_Q3_p001": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 1,
+          "q2_share_percent": 99,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4950,
+            "Q3": 50
+          },
+          "class_counts": {
+            "World": 2488,
+            "Sports": 2488,
+            "Business": 12,
+            "Sci/Tech": 12
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2475,
+              "World": 2475
+            },
+            "Q3": {
+              "Business": 12,
+              "Sci/Tech": 12,
+              "Sports": 13,
+              "World": 13
+            }
+          }
+        },
+        "Q2_to_Q3_p002": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 2,
+          "q2_share_percent": 98,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4900,
+            "Q3": 100
+          },
+          "class_counts": {
+            "World": 2475,
+            "Sports": 2475,
+            "Business": 25,
+            "Sci/Tech": 25
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2450,
+              "World": 2450
+            },
+            "Q3": {
+              "Business": 25,
+              "Sci/Tech": 25,
+              "Sports": 25,
+              "World": 25
+            }
+          }
+        },
+        "Q2_to_Q3_p005": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 5,
+          "q2_share_percent": 95,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4750,
+            "Q3": 250
+          },
+          "class_counts": {
+            "Sports": 2438,
+            "World": 2438,
+            "Sci/Tech": 62,
+            "Business": 62
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2375,
+              "World": 2375
+            },
+            "Q3": {
+              "Business": 62,
+              "Sci/Tech": 62,
+              "Sports": 63,
+              "World": 63
+            }
+          }
+        },
+        "Q2_to_Q3_p010": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 10,
+          "q2_share_percent": 90,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4500,
+            "Q3": 500
+          },
+          "class_counts": {
+            "Sports": 2375,
+            "Sci/Tech": 125,
+            "World": 2375,
+            "Business": 125
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2250,
+              "World": 2250
+            },
+            "Q3": {
+              "Business": 125,
+              "Sci/Tech": 125,
+              "Sports": 125,
+              "World": 125
+            }
+          }
+        },
+        "Q2_to_Q3_p020": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 20,
+          "q2_share_percent": 80,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 4000,
+            "Q3": 1000
+          },
+          "class_counts": {
+            "Sports": 2250,
+            "Business": 250,
+            "World": 2250,
+            "Sci/Tech": 250
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 2000,
+              "World": 2000
+            },
+            "Q3": {
+              "Business": 250,
+              "Sci/Tech": 250,
+              "Sports": 250,
+              "World": 250
+            }
+          }
+        },
+        "Q2_to_Q3_p030": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 30,
+          "q2_share_percent": 70,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3500,
+            "Q3": 1500
+          },
+          "class_counts": {
+            "World": 2125,
+            "Sports": 2125,
+            "Sci/Tech": 375,
+            "Business": 375
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1750,
+              "World": 1750
+            },
+            "Q3": {
+              "Business": 375,
+              "Sci/Tech": 375,
+              "Sports": 375,
+              "World": 375
+            }
+          }
+        },
+        "Q2_to_Q3_p040": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 40,
+          "q2_share_percent": 60,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 3000,
+            "Q3": 2000
+          },
+          "class_counts": {
+            "Sports": 2000,
+            "World": 2000,
+            "Business": 500,
+            "Sci/Tech": 500
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1500,
+              "World": 1500
+            },
+            "Q3": {
+              "Business": 500,
+              "Sci/Tech": 500,
+              "Sports": 500,
+              "World": 500
+            }
+          }
+        },
+        "Q2_to_Q3_p050": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 50,
+          "q2_share_percent": 50,
+          "boundary_distance_percent": 50,
+          "n": 5000,
+          "component_counts": {
+            "Q2": 2500,
+            "Q3": 2500
+          },
+          "class_counts": {
+            "Sports": 1875,
+            "World": 1875,
+            "Sci/Tech": 625,
+            "Business": 625
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1250,
+              "World": 1250
+            },
+            "Q3": {
+              "Business": 625,
+              "Sci/Tech": 625,
+              "Sports": 625,
+              "World": 625
+            }
+          }
+        },
+        "Q2_to_Q3_p060": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 60,
+          "q2_share_percent": 40,
+          "boundary_distance_percent": 40,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 3000,
+            "Q2": 2000
+          },
+          "class_counts": {
+            "Sci/Tech": 750,
+            "Business": 750,
+            "Sports": 1750,
+            "World": 1750
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 1000,
+              "World": 1000
+            },
+            "Q3": {
+              "Business": 750,
+              "Sci/Tech": 750,
+              "Sports": 750,
+              "World": 750
+            }
+          }
+        },
+        "Q2_to_Q3_p070": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 70,
+          "q2_share_percent": 30,
+          "boundary_distance_percent": 30,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 3500,
+            "Q2": 1500
+          },
+          "class_counts": {
+            "Business": 875,
+            "World": 1625,
+            "Sports": 1625,
+            "Sci/Tech": 875
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 750,
+              "World": 750
+            },
+            "Q3": {
+              "Business": 875,
+              "Sci/Tech": 875,
+              "Sports": 875,
+              "World": 875
+            }
+          }
+        },
+        "Q2_to_Q3_p080": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 80,
+          "q2_share_percent": 20,
+          "boundary_distance_percent": 20,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4000,
+            "Q2": 1000
+          },
+          "class_counts": {
+            "Sci/Tech": 1000,
+            "World": 1500,
+            "Sports": 1500,
+            "Business": 1000
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 500,
+              "World": 500
+            },
+            "Q3": {
+              "Business": 1000,
+              "Sci/Tech": 1000,
+              "Sports": 1000,
+              "World": 1000
+            }
+          }
+        },
+        "Q2_to_Q3_p090": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 90,
+          "q2_share_percent": 10,
+          "boundary_distance_percent": 10,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4500,
+            "Q2": 500
+          },
+          "class_counts": {
+            "Business": 1125,
+            "Sports": 1375,
+            "World": 1375,
+            "Sci/Tech": 1125
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 250,
+              "World": 250
+            },
+            "Q3": {
+              "Business": 1125,
+              "Sci/Tech": 1125,
+              "Sports": 1125,
+              "World": 1125
+            }
+          }
+        },
+        "Q2_to_Q3_p095": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 95,
+          "q2_share_percent": 5,
+          "boundary_distance_percent": 5,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4750,
+            "Q2": 250
+          },
+          "class_counts": {
+            "World": 1313,
+            "Business": 1187,
+            "Sports": 1313,
+            "Sci/Tech": 1187
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 125,
+              "World": 125
+            },
+            "Q3": {
+              "Business": 1187,
+              "Sci/Tech": 1187,
+              "Sports": 1188,
+              "World": 1188
+            }
+          }
+        },
+        "Q2_to_Q3_p098": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 98,
+          "q2_share_percent": 2,
+          "boundary_distance_percent": 2,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4900,
+            "Q2": 100
+          },
+          "class_counts": {
+            "World": 1275,
+            "Business": 1225,
+            "Sports": 1275,
+            "Sci/Tech": 1225
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 50,
+              "World": 50
+            },
+            "Q3": {
+              "Business": 1225,
+              "Sci/Tech": 1225,
+              "Sports": 1225,
+              "World": 1225
+            }
+          }
+        },
+        "Q2_to_Q3_p099": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 99,
+          "q2_share_percent": 1,
+          "boundary_distance_percent": 1,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 4950,
+            "Q2": 50
+          },
+          "class_counts": {
+            "Business": 1237,
+            "Sci/Tech": 1237,
+            "Sports": 1263,
+            "World": 1263
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 25,
+              "World": 25
+            },
+            "Q3": {
+              "Business": 1237,
+              "Sci/Tech": 1237,
+              "Sports": 1238,
+              "World": 1238
+            }
+          }
+        },
+        "Q3": {
+          "path": "Q2_to_Q3",
+          "target_share_percent": 100,
+          "q2_share_percent": 0,
+          "boundary_distance_percent": 0,
+          "n": 5000,
+          "component_counts": {
+            "Q3": 5000
+          },
+          "class_counts": {
+            "World": 1250,
+            "Business": 1250,
+            "Sports": 1250,
+            "Sci/Tech": 1250
+          },
+          "component_class_counts": {
+            "Q2": {
+              "Sports": 0,
+              "World": 0
+            },
+            "Q3": {
+              "Business": 1250,
+              "Sci/Tech": 1250,
+              "Sports": 1250,
+              "World": 1250
+            }
+          }
+        }
+      },
+      "source_hash": "ef1f26ee8695089aa0eacd43f22f3de9359b792f38995696b4fec54e03bf87c2"
+    }
+  ],
+  "sources": {
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/aggregate.json": "a0bc0ec4173f34b779d4d5db68da688a8dfb4a4b162ce3a67604161532651b4e",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_0/raw_scores.json": "183d67065951d14f1a268d9d39f4ca3af42b7cd730ba86fc013d3f9a661788bc",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_1/raw_scores.json": "a30e1c3c77ac9eb1b4dea32c02d864a58208f604c3ae8acd840a1339e0a82586",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_2/raw_scores.json": "02357e3d34190330894348a10e544daa524bcd66f1e26a8b31bd5ef575ff3096",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_3/raw_scores.json": "f954cee58e1ce976717d871b1564ee91933f82ec2075215159587ed023d2e936",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_4/raw_scores.json": "c6a4c0c4c51a5d35af75d4eb9335d22324df3b24e8a35c7885a90d21164f9db9",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_0/protocol.json": "4182e51114fca231800f3dfd1a3c591656ed77e1e73bca060d07e08e954e8ed8",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_1/protocol.json": "99e4eebe2d05c0eb1a3d8128a4933f30f3b649ec538f46ea26f37167935ba690",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_2/protocol.json": "5ed375e8afcb165a5a599a5f41e35d772cf6e79dd3bded44c4ded2f02bfb6689",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_3/protocol.json": "7a12cdd51d558f6f6de81657626628a2855ab75268072146219ac6494b502675",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_4/protocol.json": "0df5b90d797f0ec93affe913aa569f6a3d3970d421d8df336e722b545df24de3",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_0/mixture_indices.json": "e29bdfc2fe4222373956b3e699c2f635572fe2765980d6fb47b4083740b764ca",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_1/mixture_indices.json": "2028c0be3e845a0f4aa09b31c5da4542a6f884c361882564eb2986c75e14a118",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_2/mixture_indices.json": "8117235c43a07bf107decc8c9136953ce7309c957abe93d6f2a932cc164e40f6",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_3/mixture_indices.json": "87b235f68f59ba4959470d4323d9d2c173d8f3bc78fa16bdb228fa7a543a0a13",
+    "artifacts/sol_three_panels_raw_gp_binavg_20260923/target/seed_4/mixture_indices.json": "2669944e5b2a88dcd990345f0f00513018cd72b75ccc9332df3c4535f2eb4112"
+  }
+}

@@ -1,0 +1,10 @@
+SOL
+Copyright 2026 SOL contributors.
+
+Licensed under the Apache License, Version 2.0. See LICENSE.
+
+Optional pretrained models are downloaded separately and retain their upstream
+licenses. Provenance for the bundled LM1B and OpenWebText example texts is in
+examples/data/corpora.json and examples/validation_data/corpora.json, with
+descriptions in their README files. The software license
+does not relicense the source corpora.

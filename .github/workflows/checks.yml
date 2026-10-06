@@ -1,0 +1,120 @@
+name: SOL package checks
+
+on:
+  # Website-only changes are deployed by pages.yml and need no package checks.
+  push:
+    paths-ignore: ['site/**', '.github/workflows/pages.yml']
+  pull_request:
+    paths-ignore: ['site/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+    inputs:
+      gpu:
+        description: "Run tests on an available self-hosted CUDA runner"
+        type: boolean
+        default: false
+      full_validation:
+        description: "With GPU enabled, re-encode both frozen 5k pairs (cached GPT-2 Large required)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {python: "3.10", numpy: "numpy==1.23.5"}
+          - {python: "3.13", numpy: "numpy"}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install "${{ matrix.numpy }}" ".[dev]"
+      - run: python -m ruff check src tests examples
+      - run: python -m ruff format --check src tests examples
+      - run: python -m mypy
+      - run: cffconvert --validate
+  cpu:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {os: ubuntu-latest, python: "3.10", numpy: "numpy==1.23.5"}
+          - {os: ubuntu-latest, python: "3.13", numpy: "numpy"}
+          - {os: windows-latest, python: "3.12", numpy: "numpy"}
+          - {os: macos-latest, python: "3.12", numpy: "numpy"}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install "${{ matrix.numpy }}" build twine
+      - run: python -m build
+      - run: python -m twine check --strict dist/*
+        shell: bash
+      - run: python -m pip install --no-deps dist/*.whl
+        shell: bash
+      - name: Test the installed wheel
+        run: python -m unittest discover -s tests/sol_metric -v
+      - name: Test bundled examples without optional dependencies
+        run: python -m unittest discover -s tests/examples -v
+      - name: Import outside the checkout and verify bundled typing marker
+        working-directory: ${{ runner.temp }}
+        run: python -c "import sys, sol_metric; from importlib.metadata import version; from importlib.resources import files; assert not {'torch', 'transformers', 'dsw'} & set(sys.modules); assert version('sol-metric') == sol_metric.__version__; assert files('sol_metric').joinpath('py.typed').is_file()"
+  text:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {python: "3.10", numpy: "numpy==1.23.5", torch: "torch==2.2.2", transformers: "transformers==4.51.3"}
+          - {python: "3.12", numpy: "numpy", torch: "torch>=2.2.2", transformers: "transformers>=4.51.3,<5"}
+    runs-on: ubuntu-latest
+    env:
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      OMP_NUM_THREADS: "2"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install "${{ matrix.numpy }}" "${{ matrix.transformers }}"
+      - run: python -m pip install "${{ matrix.torch }}" --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install ".[text]"
+      - run: python -m unittest discover -s tests/sol_metric -v
+      - run: python -m unittest discover -s tests/examples -v
+  gpu:
+    if: github.event_name == 'workflow_dispatch' && inputs.gpu
+    runs-on: [self-hosted, linux, gpu]
+    env:
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      OMP_NUM_THREADS: "2"
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --no-deps .
+      - run: python -c "import torch, transformers; assert torch.cuda.is_available()"
+      - run: python -m unittest discover -s tests/sol_metric -v
+      - run: python -m unittest discover -s tests/examples -v
+      - name: Validate LM1B 5k pair
+        if: inputs.full_validation
+        run: python examples/compare_corpora.py lm1b --validate --device cuda:0 --local-files-only --output results/lm1b.json
+      - name: Validate OpenWebText 5k pair
+        if: inputs.full_validation
+        run: python examples/compare_corpora.py owt --validate --device cuda:0 --local-files-only --output results/owt.json
+      - name: Validate both 5k pairs with an FP32 encoder
+        if: inputs.full_validation
+        run: |
+          python examples/compare_corpora.py lm1b --validate --device cuda:0 --dtype float32 --local-files-only --output results/lm1b_fp32.json
+          python examples/compare_corpora.py owt --validate --device cuda:0 --dtype float32 --local-files-only --output results/owt_fp32.json
+      - uses: actions/upload-artifact@v4
+        if: inputs.full_validation
+        with:
+          name: frozen-5k-validation
+          path: results/*.json

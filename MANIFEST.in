@@ -1,0 +1,10 @@
+include README.md LICENSE NOTICE CITATION.cff CHANGELOG.md CONTRIBUTING.md
+recursive-include docs *.md
+recursive-include examples *.py
+recursive-include examples/data *.json *.jsonl.gz *.md
+# The frozen 5k text archives (~20 MB) stay in the Git repository only.
+recursive-include examples/validation_data *.json *.md
+recursive-include src/sol_metric *.py
+include src/sol_metric/py.typed
+recursive-include tests *.py
+global-exclude __pycache__ *.py[cod]

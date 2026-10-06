@@ -1,0 +1,26 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+*.egg-info/
+*.egg-link
+build/
+dist/
+release-dist/
+.coverage
+htmlcov/
+.DS_Store
+.idea/
+.vscode/
+*.log
+# Keep downloaded models, scratch arrays and local results out of Git.
+checkpoints/
+cache/
+results/
+scratch/
+*.npy
+*.npz

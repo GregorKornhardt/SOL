@@ -1,0 +1,29 @@
+% Requires \usepackage{booktabs,wrapfig}.
+% Insert this wraptable at the paragraph discussing this encoder.
+% Generated from validated nine-seed results; mean and population SD, four decimal places.
+% Regenerate: python artifacts/owt_temperature_wraptables_20261002/build.py
+\begin{wraptable}{r}{0.60\textwidth}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{2.5pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular}{@{}crrr@{}}
+    \toprule
+    Temp. & vMF & \shortstack{Soft-Masked\\+ ReMDM} & MDLM \\
+    \midrule
+    $0.7$ & $48.6981 \pm 0.2921$ & $57.6332 \pm 0.4198$ & $54.3128 \pm 0.4042$ \\
+    $0.8$ & $37.9781 \pm 0.1596$ & $41.3254 \pm 0.3030$ & $42.0520 \pm 0.2443$ \\
+    $0.9$ & $33.1134 \pm 0.0761$ & $24.7670 \pm 0.1612$ & $37.4379 \pm 0.1485$ \\
+    $1.0$ & $\mathbf{31.4917 \pm 0.0701}$ & $\mathbf{18.9293 \pm 0.1211}$ & $\mathbf{36.3186 \pm 0.0905}$ \\
+    $1.1$ & $34.4412 \pm 0.1716$ & $23.4306 \pm 0.0816$ & $40.4199 \pm 0.1588$ \\
+    $1.2$ & $42.6649 \pm 0.2518$ & $86.6133 \pm 0.5054$ & $49.8600 \pm 0.2991$ \\
+    $1.3$ & $53.8943 \pm 0.3052$ & $111.7374 \pm 0.6664$ & $62.8243 \pm 0.4078$ \\
+    \bottomrule
+  \end{tabular}
+  \caption{\footnotesize Temperature sweep scored with Dream-7B ($L_g=L_\xi=8192$, $M=64$).
+  SOL against reference G, with 5,000 samples per side and a 1,024-token horizon.
+  Entries are mean $\pm$ population SD over nine seed pairs; lower is better.
+  Bold marks each column minimum. Soft-Masked uses ReMDM-loop;
+  MDLM uses exact categorical sampling.}
+  \label{tab:owt-temperature-dream8k}
+\end{wraptable}

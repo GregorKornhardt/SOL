@@ -33,8 +33,7 @@ generated = ["The afternoon train was late.", "Heavy rain fell overnight."]
 print(SOL().from_texts(reference, generated))
 ```
 
-The default encoder is Dream 7B, as in the paper: a 15 GB download that needs
-a GPU with about 16 GB. Any Hugging Face model can be used instead:
+The default encoder is Dream 7B, for other model use:
 
 ```python
 from sol_metric import SOL, TextEncoder

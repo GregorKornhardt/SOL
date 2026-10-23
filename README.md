@@ -1,8 +1,9 @@
 # SOL - Sliced Optimal Transport for Language
 
-SOL measures the gap between two text
-corpora with a double-sliced Wasserstein distance over contextual token
-embeddings. Lower is closer; identical corpora score zero.
+SOL compares generated and reference text distributions using a double-sliced
+Wasserstein distance over contextual token embeddings. It requires only samples
+and measures differences in quality and diversity. Lower is closer; identical
+corpora score zero.
 
 [Paper](https://arxiv.org/abs/2610.06513) ·
 [Website](https://gregorkornhardt.github.io/SOL/) ·
@@ -10,6 +11,11 @@ embeddings. Lower is closer; identical corpora score zero.
 [Models](https://github.com/GregorKornhardt/SOL/blob/main/docs/MODELS.md) ·
 [Changelog](https://github.com/GregorKornhardt/SOL/blob/main/CHANGELOG.md) ·
 [Contributing](https://github.com/GregorKornhardt/SOL/blob/main/CONTRIBUTING.md)
+
+<img src="https://raw.githubusercontent.com/GregorKornhardt/SOL/main/docs/assets/mode-collapse.png" width="480" alt="SOL rises under mode collapse while generative perplexity falls.">
+
+SOL detects mode collapse even when generative perplexity improves
+([paper, Fig. 4](https://arxiv.org/pdf/2610.06513#page=8)).
 
 ## Install
 
@@ -25,23 +31,22 @@ load large checkpoints straight onto the GPU.
 
 ## Use
 
-```python
-from sol_metric import SOL
-
-reference = ["The train arrived at noon.", "It rained throughout the night."]
-generated = ["The afternoon train was late.", "Heavy rain fell overnight."]
-print(SOL().from_texts(reference, generated))
-```
-
-The default encoder is Dream 7B, for other model use:
+The default encoder is Dream 7B (~15 GB of FP16 weights, plus activations).
+This example uses the smaller GPT-2 Large; omit `encoder` to use Dream.
 
 ```python
 from sol_metric import SOL, TextEncoder
 
+reference = ["The train arrived at noon.", "It rained throughout the night."]
+generated = ["The afternoon train was late.", "Heavy rain fell overnight."]
 encoder = TextEncoder('gpt2-large')
 metric = SOL()
 print(metric.from_texts(reference, generated, encoder=encoder))
 ```
+
+Compare scores with the same encoder and evaluation settings; there is no
+universal "good" score. The tiny example illustrates the API; the bundled
+validation uses 5,000 texts per corpus.
 
 Features can be saved and reused, for example one reference against several
 generated corpora:
@@ -74,23 +79,23 @@ print(SOL().from_tokens(x, x_offsets, y, y_offsets))
 
 Good to know:
 
-- Results are reproducible: the random directions and GP draws are seeded
-  (`seed`, `gp_seed`, both 0 by default). Change them to measure the spread
-  over seeds, as the paper does with nine seed pairs.
-- The paper's encoders (Dream 7B, GPT-2 Large, OLMo 2 1B, Qwen3 0.6B) are pinned
-  to the paper's checkpoint commits; pass `revision='main'` for the latest.
-- Encoders run in FP16 on a GPU and FP32 on a CPU. Each document is encoded
-  whole up to the model's limit (2,048 tokens for Dream, 1,024 for GPT-2 Large);
-  longer documents are truncated with a warning.
-- A GPU is used when PyTorch sees one; pass `device='cpu'` to force the CPU.
-- `metric.last_run` records the score, encoder, revision and all settings.
+- `seed` and `gp_seed` default to 0; vary both to measure spread over seeds.
+- Dream, GPT-2 Large, OLMo 2 and Qwen3 use pinned paper checkpoints;
+  `revision='main'` selects the latest.
+- Encoders use FP16 on GPU, FP32 on CPU, and truncate with a warning beyond
+  the model limit (Dream: 2,048 tokens; GPT-2 Large: 1,024).
+- CUDA is selected automatically; pass `device='cpu'` to force the CPU.
+- `metric.last_run` records the score, encoder, revision and settings.
 
-## Reproduce the paper
+## Validate the frozen 5k pairs
 
-The repository bundles LM1B and OpenWebText comparisons, encoded with GPT-2
-Large. The 5k OpenWebText pair is the paper's seed-0 subset for MDLM.
+The bundled LM1B and OpenWebText pairs validate the package against the paper's
+GPT-2 Large evaluation code. The OpenWebText pair is the paper's seed-0 MDLM subset.
 
 ```bash
+git clone https://github.com/GregorKornhardt/SOL.git
+cd SOL
+pip install '.[text]'
 python examples/compare_corpora.py owt                             # 32 texts per corpus
 python examples/compare_corpora.py owt --validate --device cuda:0  # 5,000 per corpus
 ```
@@ -100,11 +105,12 @@ python examples/compare_corpora.py owt --validate --device cuda:0  # 5,000 per c
 | LM1B | vMF flow model | 0.961872093 |
 | OpenWebText | MDLM, exact sampling | 2.167415507 |
 
-`--validate` re-encodes both corpora and checks the score against the paper's
-evaluation code on the same texts; this package matches it to 1e-10. On an RTX
-5090 the OpenWebText check takes about 2.5 minutes. The paper's table reports
-2.167356 because it used GPT-2 token IDs instead of the decoded text. The 5k
-texts (20 MB) are in the Git repository, not the PyPI package; see the
+`--validate` re-encodes both corpora and checks the recorded scores. Under the
+fixed protocol, this package matched the independent paper code within 1e-10
+relative. On an RTX 5090 the OpenWebText check takes about 2.5 minutes.
+The paper's table reports 2.167356 because it used GPT-2 token IDs instead of
+the decoded text. The 5k texts (20 MB) are in the Git repository, not the PyPI
+package; see the
 [validation manifest](https://github.com/GregorKornhardt/SOL/blob/main/examples/validation_data/validation.json).
 
 ## Settings
@@ -118,9 +124,9 @@ texts (20 MB) are in the Git repository, not the PyPI package; see the
 | `scale` | hidden dimension | factor on the squared distance |
 | `device` | `'auto'` | CUDA when available, else NumPy |
 
-Memory is handled automatically: features stay in RAM while they fit and go
-to temporary files otherwise, and batch sizes never change scores; if memory
-runs out, the error names the batch size to lower. All settings are in the
+Text features spill to temporary files beyond the RAM budget. FP16 encoder
+batching can slightly affect scores; see [precision](https://github.com/GregorKornhardt/SOL/blob/main/docs/MODELS.md#precision).
+Memory errors during binning or scoring name the batch size to lower. Settings are in the
 [API reference](https://github.com/GregorKornhardt/SOL/blob/main/docs/API.md).
 
 ## What SOL computes

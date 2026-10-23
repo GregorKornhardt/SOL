@@ -12,10 +12,10 @@ corpora score zero.
 [Changelog](https://github.com/GregorKornhardt/SOL/blob/main/CHANGELOG.md) ·
 [Contributing](https://github.com/GregorKornhardt/SOL/blob/main/CONTRIBUTING.md)
 
-<img src="https://raw.githubusercontent.com/GregorKornhardt/SOL/main/docs/assets/mode-collapse.png" width="480" alt="SOL rises under mode collapse while generative perplexity falls.">
+<img src="https://raw.githubusercontent.com/GregorKornhardt/SOL/main/docs/assets/sol-illustration.png" width="1000" alt="SOL embeds texts as token clouds, projects them to quantiles, slices again, and compares the resulting corpus distributions.">
 
-SOL detects mode collapse even when generative perplexity improves
-([paper, Fig. 4](https://arxiv.org/pdf/2610.06513#page=8)).
+SOL compares corpora by embedding texts as token clouds and slicing twice
+([paper, Fig. 1](https://arxiv.org/pdf/2610.06513#page=3)).
 
 ## Install
 
